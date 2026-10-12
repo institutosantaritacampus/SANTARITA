@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#202a73">
+  <title>Novedades · Colegio Santa Rita</title>
+  <style>
+    :root{
+      --navy:#202a73;
+      --navy2:#4253b8;
+      --burgundy:#bd3343;
+      --gold:#d5ad4a;
+      --superior:#6b4bc3;
+      --ink:#202532;
+      --muted:#6d7482;
+      --bg:#f5f7fc;
+      --card:#fff;
+      --line:#e3e7f1;
+      --shadow:0 14px 36px rgba(31,40,91,.10);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Segoe UI",Arial,sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+    }
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    button{font:inherit}
+
+    .top{
+      background:linear-gradient(90deg,var(--navy),var(--navy2));
+      color:#fff;
+      padding:8px 16px;
+      text-align:center;
+      font-size:.82rem;
+    }
+    header{
+      background:#fff;
+      border-bottom:1px solid var(--line);
+      position:sticky;
+      top:0;
+      z-index:20;
+    }
+    .nav{
+      width:min(1120px,calc(100% - 28px));
+      min-height:76px;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:11px;
+    }
+    .brand img{
+      width:52px;height:52px;
+      border-radius:50%;
+      object-fit:cover;
+      border:2px solid #ebe5d7;
+    }
+    .brand b{display:block;color:var(--navy);letter-spacing:.04em}
+    .brand small{display:block;color:var(--muted);font-size:.73rem;margin-top:2px}
+    .back{
+      padding:10px 13px;
+      border-radius:11px;
+      background:#f1f4fb;
+      color:var(--navy);
+      font-weight:850;
+      border:1px solid var(--line);
+    }
+
+    .hero{
+      padding:66px 18px 38px;
+      background:
+        radial-gradient(circle at 9% 13%,rgba(213,173,74,.20),transparent 24%),
+        radial-gradient(circle at 89% 24%,rgba(66,83,184,.18),transparent 28%),
+        linear-gradient(135deg,#fff,#f2f5ff 60%,#fff5f5);
+    }
+    .hero-inner{width:min(1120px,100%);margin:auto}
+    .label{
+      color:var(--burgundy);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.13em;
+      font-size:.72rem;
+    }
+    h1{
+      margin:9px 0 10px;
+      color:var(--navy);
+      font-size:clamp(2.5rem,6vw,4.7rem);
+      line-height:.98;
+      letter-spacing:-.04em;
+    }
+    .hero p{
+      max-width:760px;
+      color:var(--muted);
+      line-height:1.68;
+      font-size:1rem;
+    }
+
+    .tabs-wrap{
+      width:min(1120px,calc(100% - 28px));
+      margin:24px auto 0;
+    }
+    .tabs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      padding:12px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:17px;
+      box-shadow:var(--shadow);
+    }
+    .tab-btn{
+      border:1px solid var(--line);
+      background:#fff;
+      color:#535a6a;
+      border-radius:999px;
+      padding:10px 14px;
+      cursor:pointer;
+      font-weight:850;
+      transition:.2s;
+    }
+    .tab-btn.active,
+    .tab-btn:hover{
+      background:linear-gradient(135deg,var(--navy),var(--navy2));
+      color:#fff;
+      border-color:transparent;
+      transform:translateY(-1px);
+    }
+
+    main{
+      width:min(1120px,calc(100% - 28px));
+      margin:22px auto 60px;
+    }
+    .panel{display:none}
+    .panel.active{display:block}
+    .panel-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+    .panel-title h2{
+      margin:0;
+      color:var(--navy);
+      font-size:1.55rem;
+    }
+    .panel-title span{
+      color:var(--muted);
+      font-size:.8rem;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+    .card{
+      min-height:220px;
+      padding:20px;
+      border-radius:18px;
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:0 8px 24px rgba(31,40,91,.045);
+      display:flex;
+      flex-direction:column;
+      transition:.22s;
+    }
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:var(--shadow);
+    }
+    .card small{
+      color:var(--burgundy);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.07em;
+      font-size:.68rem;
+    }
+    .card h3{
+      margin:11px 0 8px;
+      color:var(--navy);
+      font-size:1.12rem;
+    }
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:.88rem;
+      line-height:1.57;
+    }
+    .card .more{
+      margin-top:auto;
+      padding-top:16px;
+      color:var(--burgundy);
+      font-weight:850;
+      font-size:.82rem;
+    }
+
+    .notice-card{
+      border-left:5px solid var(--burgundy);
+      background:linear-gradient(135deg,#fff8e9,#fff);
+    }
+    .agenda-card{
+      border-left:5px solid var(--gold);
+      background:linear-gradient(135deg,#fffaf0,#fff);
+    }
+    .social-card{
+      border-left:5px solid var(--superior);
+      background:linear-gradient(135deg,#f5f1ff,#fff);
+    }
+
+    .accordion{
+      display:grid;
+      gap:11px;
+    }
+    .acc-item{
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:15px;
+      overflow:hidden;
+    }
+    .acc-head{
+      width:100%;
+      border:0;
+      background:#fff;
+      padding:15px 17px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+      color:var(--navy);
+      font-weight:850;
+      text-align:left;
+    }
+    .acc-content{
+      display:none;
+      padding:0 17px 16px;
+      color:var(--muted);
+      line-height:1.6;
+      font-size:.88rem;
+    }
+    .acc-item.open .acc-content{display:block}
+    .acc-item.open .acc-head span{transform:rotate(45deg)}
+
+    footer{
+      background:#191f4d;
+      color:#fff;
+      padding:25px 18px;
+      text-align:center;
+    }
+    footer p{margin:0;color:rgba(255,255,255,.67);font-size:.82rem}
+
+    @media(max-width:820px){
+      .cards{grid-template-columns:1fr}
+      .tabs{overflow:auto;flex-wrap:nowrap}
+      .tab-btn{white-space:nowrap}
+      .brand small{display:none}
+    }
+  
+/* ===== V26 · PUBLICACIONES DINÁMICAS ===== */
+.dynamic-post-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+.dynamic-post{
+  min-height:215px;
+  padding:20px;
+  border-radius:18px;
+  background:#fff;
+  border:1px solid var(--line);
+  box-shadow:0 8px 24px rgba(31,40,91,.05);
+  display:flex;
+  flex-direction:column;
+}
+.dynamic-post small{
+  color:var(--burgundy);
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+  font-size:.68rem;
+}
+.dynamic-post h3{
+  margin:10px 0 8px;
+  color:var(--navy);
+  font-size:1.12rem;
+}
+.dynamic-post p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.6;
+  font-size:.88rem;
+  white-space:pre-line;
+}
+.dynamic-post .post-meta{
+  margin-top:auto;
+  padding-top:14px;
+  color:#7b8494;
+  font-size:.74rem;
+  font-weight:700;
+}
+.dynamic-empty{
+  grid-column:1/-1;
+  padding:24px;
+  text-align:center;
+  border-radius:15px;
+  background:#fff;
+  border:1px dashed #ccd5e2;
+  color:#566175;
+  font-weight:750;
+}
+@media(max-width:820px){
+  .dynamic-post-grid{grid-template-columns:1fr}
+}
+
+
+    /* V27 · Ocultar información técnica al público */
+    #galleryDriveStatus,
+    #driveGalleryStatus{
+      display:none !important;
+    }
+    
+</style>
+</head>
+<body>
+  <div class="top">Colegio Santa Rita · Novedades institucionales</div>
+
+  <header>
+    <nav class="nav">
+      <a class="brand" href="index.html">
+        <img src="logo-santa-rita.png" alt="Logo Colegio Santa Rita">
+        <div>
+          <b>COLEGIO SANTA RITA</b>
+          <small>Novedades y comunicaciones</small>
+        </div>
+      </a>
+      <a class="back" href="index.html">← Volver al sitio</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="label">Actualidad institucional</div>
+      <h1>Novedades de Santa Rita</h1>
+      <p>
+        Elegí una categoría para consultar comunicados, agenda, avisos de Rectoría y publicaciones
+        de las redes oficiales del colegio.
+      </p>
+    </div>
+  </section>
+
+  <div class="tabs-wrap">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="institucionales">Novedades institucionales</button>
+      <button class="tab-btn" data-tab="agenda">Agenda</button>
+      <button class="tab-btn" data-tab="rectoria">Avisos de Rectoría</button>
+      <button class="tab-btn" data-tab="redes">Redes y publicaciones</button>
+    </div>
+  </div>
+
+  <main>
+    <section class="panel active" id="institucionales">
+      <div class="panel-title">
+        <h2>Novedades institucionales</h2>
+        <span>Información destacada del colegio</span>
+      </div>
+      <div class="dynamic-post-grid" id="institutionalPosts">
+        <div class="dynamic-empty">Cargando novedades…</div>
+      </div>
+    </section>
+
+    <section class="panel" id="agenda">
+      <div class="panel-title">
+        <h2>Agenda</h2>
+        <span>Próximas fechas y actividades</span>
+      </div>
+      <div class="dynamic-post-grid" id="agendaPosts">
+        <div class="dynamic-empty">Cargando agenda…</div>
+      </div>
+    </section>
+
+    <section class="panel" id="rectoria">
+      <div class="panel-title">
+        <h2>Avisos de Rectoría</h2>
+        <span>Comunicaciones oficiales</span>
+      </div>
+      <div class="dynamic-post-grid" id="noticePosts">
+        <div class="dynamic-empty">Cargando avisos…</div>
+      </div>
+    </section>
+
+    <section class="panel" id="redes">
+      <div class="panel-title">
+        <h2>Redes y publicaciones</h2>
+        <span>Instagram y Facebook institucional</span>
+      </div>
+      <div class="cards">
+        <article class="card social-card">
+          <small>Instagram</small>
+          <h3>@colegiosantarita.brs</h3>
+          <p></p>
+          <a class="more" href="https://www.instagram.com/colegiosantarita.brs/" >Abrir Instagram ↗</a>
+        </article>
+        <article class="card social-card">
+          <small>Facebook</small>
+          <h3>Colegio Santa Rita</h3>
+          <p>Acceso a las publicaciones y novedades compartidas en la página institucional.</p>
+          <a class="more" href="https://www.facebook.com/col.santarita.brs" >Abrir Facebook ↗</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Colegio Santa Rita · Tucumán</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll(".tab-btn").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+        document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById(btn.dataset.tab).classList.add("active");
+        window.scrollTo({top:document.querySelector("main").offsetTop-90,behavior:"smooth"});
+      });
+    });
+
+    document.querySelectorAll(".acc-head").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        btn.closest(".acc-item").classList.toggle("open");
+      });
+    });
+  
+    // ===== V26 · APP DOCENTES -> PÁGINA NOVEDADES =====
+    const DOCENTES_PUBLIC_API = "https://script.google.com/macros/s/AKfycbwlh1kMeJjrKdIR6wkZrOS5kCFzg4ASalbs3llnNRI5V95EuHmXuqOUvOSCwRlaouwC3w/exec";
+
+    function escPost(value){
+      return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function postDate(value){
+      try {
+        return new Date(value).toLocaleDateString("es-AR",{
+          day:"2-digit",month:"short",year:"numeric"
+        });
+      } catch(e) {
+        return "";
+      }
+    }
+
+    function renderPostCards(targetId, rows, emptyText){
+      const target = document.getElementById(targetId);
+      if(!target) return;
+
+      if(!rows.length){
+        target.innerHTML = `<div class="dynamic-empty">${escPost(emptyText)}</div>`;
+        return;
+      }
+
+      target.innerHTML = rows.map(row => `
+        <article class="dynamic-post">
+          <small>${escPost(row.tipo || "Novedad")} · ${escPost(row.destino || "institucional")}</small>
+          <h3>${escPost(row.titulo || "Publicación")}</h3>
+          <p>${escPost(row.texto || "")}</p>
+          <div class="post-meta">${postDate(row.fecha)} · ${escPost(row.autor || "Colegio Santa Rita")}</div>
+        </article>
+      `).join("");
+    }
+
+    window.renderSantaRitaPublicaciones = function(payload){
+      if(!payload || payload.ok !== true || !Array.isArray(payload.publicaciones)){
+        renderPostCards("institutionalPosts", [], "No se pudieron cargar las novedades.");
+        renderPostCards("agendaPosts", [], "No se pudo cargar la agenda.");
+        renderPostCards("noticePosts", [], "No se pudieron cargar los avisos.");
+        return;
+      }
+
+      const rows = [...payload.publicaciones].sort((a,b) => new Date(b.fecha) - new Date(a.fecha));
+
+      const agenda = rows.filter(r => String(r.tipo || "").toLowerCase() === "agenda");
+      const avisos = rows.filter(r => ["aviso","comunicado"].includes(String(r.tipo || "").toLowerCase()));
+      const novedades = rows.filter(r => !["agenda","aviso"].includes(String(r.tipo || "").toLowerCase()));
+
+      renderPostCards("institutionalPosts", novedades, "Todavía no hay novedades publicadas.");
+      renderPostCards("agendaPosts", agenda, "Todavía no hay actividades en la agenda.");
+      renderPostCards("noticePosts", avisos, "Todavía no hay avisos publicados.");
+    };
+
+    (function loadSantaRitaPublicaciones(){
+      const s = document.createElement("script");
+      s.src = DOCENTES_PUBLIC_API
+        + "?api=publicaciones&callback=renderSantaRitaPublicaciones&t=" + Date.now();
+      document.head.appendChild(s);
+    })();
+
+</script>
+</body>
+</html>

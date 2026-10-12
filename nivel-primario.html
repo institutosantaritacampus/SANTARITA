@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#3478d4">
+<title>Nivel Primario · Colegio Santa Rita</title>
+<style>
+
+:root{
+  --navy:#202a73; --navy2:#4253b8; --burgundy:#bd3343; --gold:#d5ad4a;
+  --ink:#22283a; --muted:#6f7480; --line:#e4dccf; --cream:#f8f1e7; --card:#fffaf4;
+  --shadow:0 14px 34px rgba(48,40,32,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:"Segoe UI",Arial,sans-serif;color:var(--ink);
+  background:
+    radial-gradient(circle at 8% 8%,rgba(213,173,74,.17),transparent 22%),
+    radial-gradient(circle at 92% 18%,rgba(32,42,115,.10),transparent 24%),
+    radial-gradient(circle at 84% 84%,rgba(189,51,67,.08),transparent 24%),
+    linear-gradient(180deg,#f8f1e7,#f4eee7);
+}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{width:min(1160px,calc(100% - 28px));margin:auto}
+.topbar{background:linear-gradient(90deg,var(--navy),var(--navy2));color:#fff;padding:8px 15px;text-align:center;font-size:.78rem}
+header{position:sticky;top:0;z-index:30;background:rgba(255,250,244,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid #e8d8b1}
+.brand b{display:block;color:var(--navy);font-size:.92rem;letter-spacing:.04em}
+.brand small{color:var(--muted);font-size:.72rem}
+.back{padding:10px 13px;border-radius:11px;background:#fff;border:1px solid var(--line);color:var(--navy);font-weight:850}
+.hero{padding:64px 0 48px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,var(--accentSoft),rgba(255,250,244,.65));z-index:-1}
+.eyebrow{color:var(--accent);font-weight:900;text-transform:uppercase;letter-spacing:.14em;font-size:.72rem}
+h1{font-size:clamp(2.8rem,6vw,5rem);line-height:.96;letter-spacing:-.05em;color:var(--navy);margin:9px 0 13px}
+.hero p{max-width:760px;color:var(--muted);line-height:1.7;font-size:1rem}
+.hero-chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+.chip{padding:8px 11px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:.79rem;font-weight:800;color:var(--navy)}
+.section{padding:58px 0}
+.section-title{display:flex;justify-content:space-between;gap:15px;align-items:end;margin-bottom:18px}
+.section-title h2{margin:0;color:var(--navy);font-size:clamp(1.8rem,3vw,2.6rem)}
+.section-title p{margin:0;color:var(--muted);max-width:520px;font-size:.88rem;line-height:1.55}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.info-card,.news-card,.upload-zone,.notice-box{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 7px 22px rgba(48,40,32,.05)}
+.info-card{padding:20px;border-top:4px solid var(--accent)}
+.info-card b{display:block;color:var(--navy);font-size:.95rem;margin-bottom:6px}
+.info-card span{color:var(--muted);font-size:.84rem;line-height:1.5}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.news-card{padding:19px;min-height:210px;display:flex;flex-direction:column}
+.news-card small{color:var(--accent);font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:.67rem}
+.news-card h3{margin:10px 0 8px;color:var(--navy)}
+.news-card p{margin:0;color:var(--muted);font-size:.86rem;line-height:1.55}
+.news-card .date{margin-top:auto;padding-top:15px;color:#8a8178;font-size:.75rem}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gallery-item{min-height:220px;border-radius:18px;display:flex;align-items:end;padding:18px;color:#fff;background:linear-gradient(135deg,var(--accent),var(--navy2));position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.gallery-item:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(18,22,40,.48))}
+.gallery-item div{position:relative;z-index:2}.gallery-item b{display:block}.gallery-item small{color:rgba(255,255,255,.80)}
+.notice-box{padding:22px;border-left:5px solid var(--accent)}
+.notice-box h3{margin:0 0 8px;color:var(--navy)}.notice-box p{margin:0;color:var(--muted);line-height:1.6}
+.requirements{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.req{padding:21px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+.req h3{margin:0 0 12px;color:var(--navy)}.req ul{margin:0;padding-left:20px;color:var(--muted);line-height:1.8;font-size:.88rem}
+.admin-ready{margin-top:22px;padding:15px 17px;border-radius:14px;background:#fff6df;border:1px solid #ead49b;color:#735f31;font-size:.82rem;line-height:1.55}
+.plan-btn{display:inline-flex;margin-top:15px;padding:11px 14px;border-radius:11px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;font-weight:900;border:0;cursor:pointer}
+.plan-img{margin-top:18px;display:none}.plan-img.open{display:block}.plan-img img{border-radius:17px;box-shadow:var(--shadow)}
+footer{padding:25px 18px;text-align:center;background:#171f52;color:rgba(255,255,255,.72);font-size:.8rem}
+@media(max-width:850px){
+ .info-grid,.news-grid,.gallery-grid{grid-template-columns:1fr 1fr}
+ .requirements{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+ .brand small{display:none}.info-grid,.news-grid,.gallery-grid{grid-template-columns:1fr}
+ .section-title{display:block}.section-title p{margin-top:8px}
+}
+
+:root{--accent:#3478d4;--accentSoft:rgba(52,120,212,.13);}
+
+/* =========================================================
+   V14 · PÁGINAS DE NIVEL MÁS GRANDES Y LEGIBLES
+   ========================================================= */
+body{
+  color:#171d31 !important;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(213,173,74,.06),transparent 22%),
+    radial-gradient(circle at 90% 18%,rgba(32,42,115,.05),transparent 22%),
+    linear-gradient(180deg,#eef3f8 0%,#f7f9fc 55%,#edf2f7 100%) !important;
+  font-size:18px !important;
+}
+
+header{
+  background:rgba(255,255,255,.97) !important;
+}
+
+.hero{
+  padding:72px 0 56px !important;
+  border-bottom:1px solid #dbe2eb;
+}
+
+.hero:before{
+  background:
+    linear-gradient(135deg,var(--accentSoft),rgba(255,255,255,.93)) !important;
+}
+
+.eyebrow{
+  font-size:.82rem !important;
+  font-weight:950 !important;
+}
+
+h1{
+  color:#152157 !important;
+  font-size:clamp(3rem,7vw,5.6rem) !important;
+}
+
+.hero p{
+  color:#30394e !important;
+  font-size:1.08rem !important;
+  line-height:1.78 !important;
+}
+
+.chip{
+  color:#202a73 !important;
+  background:#fff !important;
+  border:1px solid #cfd8e4 !important;
+  font-size:.9rem !important;
+  font-weight:900 !important;
+  padding:10px 13px !important;
+}
+
+.section{
+  padding:66px 0 !important;
+}
+
+.section-title h2{
+  color:#152157 !important;
+  font-size:clamp(2rem,4vw,3rem) !important;
+}
+
+.section-title p{
+  color:#40495c !important;
+  font-size:.96rem !important;
+}
+
+.info-card,
+.news-card,
+.notice-box,
+.req{
+  background:#fff !important;
+  border-color:#d9e1ea !important;
+  box-shadow:0 10px 26px rgba(31,40,91,.06) !important;
+}
+
+.info-card{
+  padding:24px !important;
+  border-top:6px solid var(--accent) !important;
+}
+
+.info-card b{
+  color:#17255c !important;
+  font-size:1.12rem !important;
+  font-weight:950 !important;
+}
+
+.info-card span{
+  color:#394257 !important;
+  font-size:1rem !important;
+  line-height:1.65 !important;
+}
+
+.news-card{
+  padding:23px !important;
+}
+
+.news-card small{
+  font-size:.76rem !important;
+  font-weight:950 !important;
+}
+
+.news-card h3{
+  color:#17255c !important;
+  font-size:1.18rem !important;
+}
+
+.news-card p{
+  color:#3b4558 !important;
+  font-size:.98rem !important;
+  line-height:1.68 !important;
+}
+
+.news-card .date{
+  color:#5b6477 !important;
+  font-size:.82rem !important;
+}
+
+.gallery-item{
+  min-height:250px !important;
+}
+
+.gallery-item b{
+  font-size:1.12rem !important;
+  font-weight:950 !important;
+}
+
+.gallery-item small{
+  color:#fff !important;
+  font-size:.9rem !important;
+  font-weight:700 !important;
+}
+
+.notice-box h3,
+.req h3{
+  color:#17255c !important;
+  font-size:1.2rem !important;
+}
+
+.notice-box p,
+.req li{
+  color:#394257 !important;
+  font-size:1rem !important;
+  line-height:1.75 !important;
+}
+
+.admin-ready{
+  color:#514521 !important;
+  font-size:.9rem !important;
+  line-height:1.65 !important;
+}
+
+.back{
+  font-size:.9rem !important;
+  font-weight:900 !important;
+}
+
+@media(max-width:620px){
+  body{font-size:17px !important}
+  .hero p{font-size:1rem !important}
+  .section{padding:52px 0 !important}
+}
+
+
+/* =========================================================
+   V15 · IDENTIDAD VISUAL PROPIA DEL NIVEL
+   ========================================================= */
+body{
+  color:#151c30 !important;
+  background:
+    radial-gradient(circle at 8% 8%,#eaf4ff,transparent 28%),
+    radial-gradient(circle at 92% 14%,#eaf8f3,transparent 28%),
+    linear-gradient(180deg,#eef3f8 0%,#f7f9fc 55%,#edf2f7 100%) !important;
+}
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  border-bottom:4px solid var(--accent) !important;
+}
+
+.hero:before{
+  background:
+    radial-gradient(circle at 9% 18%,#eaf4ff,transparent 34%),
+    radial-gradient(circle at 91% 18%,#eaf8f3,transparent 34%),
+    linear-gradient(135deg,#ffffff 0%,#f8fbff 100%) !important;
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  right:-60px;
+  top:-70px;
+  width:240px;
+  height:240px;
+  border-radius:50%;
+  border:38px solid color-mix(in srgb, var(--accent) 13%, transparent);
+  pointer-events:none;
+}
+
+.level-decor{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:16px 0 6px;
+}
+
+.level-decor .emoji-strip{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:#fff;
+  border:2px solid color-mix(in srgb, var(--accent) 30%, #dce3ec);
+  box-shadow:0 8px 18px rgba(31,40,91,.07);
+  font-size:1.45rem;
+  letter-spacing:.06em;
+}
+
+.level-decor .level-message{
+  color:#273149;
+  font-size:1rem;
+  font-weight:850;
+}
+
+.eyebrow{
+  color:var(--accent) !important;
+  font-weight:950 !important;
+  font-size:.84rem !important;
+}
+
+.hero p{
+  color:#283248 !important;
+  font-weight:650 !important;
+  font-size:1.10rem !important;
+}
+
+.section-title p{
+  color:#303a4f !important;
+  font-weight:700 !important;
+  font-size:1rem !important;
+}
+
+.info-card b,
+.news-card h3,
+.notice-box h3,
+.req h3{
+  color:#17245a !important;
+  font-weight:950 !important;
+}
+
+.info-card span,
+.news-card p,
+.notice-box p,
+.req li{
+  color:#2f394f !important;
+  font-weight:620 !important;
+}
+
+.info-card{
+  border-top:7px solid var(--accent) !important;
+}
+
+.news-card{
+  border-top:4px solid color-mix(in srgb, var(--accent) 78%, #ffffff) !important;
+}
+
+.gallery-item{
+  border:2px solid color-mix(in srgb, var(--accent) 28%, #ffffff) !important;
+}
+
+.gallery-item b{
+  font-size:1.16rem !important;
+}
+
+.gallery-item small{
+  font-size:.95rem !important;
+}
+
+.chip{
+  border:2px solid color-mix(in srgb, var(--accent) 26%, #d7dfeb) !important;
+  box-shadow:0 5px 12px rgba(31,40,91,.05);
+}
+
+@media(max-width:620px){
+  .level-decor .emoji-strip{font-size:1.25rem}
+  .level-decor .level-message{font-size:.95rem}
+}
+
+
+/* ===== V16 · GALERÍA AUTOMÁTICA DESDE GOOGLE DRIVE ===== */
+.drive-gallery-status{
+  margin:0 0 16px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:#eef4fb;
+  border:1px solid #d6e0ed;
+  color:#344157;
+  font-size:.9rem;
+  font-weight:700;
+}
+.drive-gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.drive-photo{
+  border:1px solid #d9e1ea;
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 9px 24px rgba(31,40,91,.07);
+  cursor:pointer;
+  transition:.22s ease;
+}
+.drive-photo:hover{
+  transform:translateY(-4px);
+  box-shadow:0 15px 32px rgba(31,40,91,.13);
+}
+.drive-photo img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  background:#e9eef4;
+}
+.drive-photo figcaption{
+  padding:13px 15px 15px;
+  color:#18245c;
+  font-size:.95rem;
+  font-weight:900;
+  line-height:1.35;
+}
+.drive-photo figcaption small{
+  display:block;
+  margin-top:5px;
+  color:#5a6478;
+  font-size:.75rem;
+  font-weight:650;
+}
+.drive-empty{
+  grid-column:1/-1;
+  padding:28px;
+  text-align:center;
+  border-radius:16px;
+  border:2px dashed #cdd6e2;
+  background:#fff;
+  color:#455066;
+}
+.drive-lightbox{
+  position:fixed;
+  inset:0;
+  z-index:800;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:rgba(7,12,28,.90);
+  backdrop-filter:blur(6px);
+}
+.drive-lightbox.open{display:flex}
+.drive-lightbox-inner{
+  width:min(1500px,98vw);
+  height:min(980px,95vh);
+  display:flex;
+  flex-direction:column;
+  border-radius:18px;
+  overflow:hidden;
+  background:#11182f;
+  box-shadow:0 34px 100px rgba(0,0,0,.50);
+}
+.drive-lightbox-head{
+  min-height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:11px 14px 11px 18px;
+  background:linear-gradient(90deg,#202a73,#4253b8);
+  color:#fff;
+}
+.drive-lightbox-title{
+  font-size:.96rem;
+  font-weight:900;
+}
+.drive-lightbox-close{
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.10);
+  color:#fff;
+  border-radius:10px;
+  padding:9px 12px;
+  cursor:pointer;
+  font-weight:900;
+}
+.drive-lightbox-body{
+  flex:1;
+  overflow:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px;
+}
+.drive-lightbox-body img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+@media(max-width:850px){
+  .drive-gallery-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .drive-gallery-grid{grid-template-columns:1fr}
+  .drive-photo img{height:250px}
+}
+
+
+/* ===== V26 · NOVEDADES DEL NIVEL DESDE APP DOCENTES ===== */
+.level-news-status{
+  grid-column:1/-1;
+  padding:18px;
+  border-radius:14px;
+  border:1px dashed #cbd5e3;
+  background:#fff;
+  color:#566176;
+  text-align:center;
+  font-weight:750;
+}
+.news-card p{
+  white-space:pre-line;
+}
+.news-card .date{
+  font-weight:750;
+}
+
+
+    /* V27 · Ocultar información técnica al público */
+    #galleryDriveStatus,
+    #driveGalleryStatus{
+      display:none !important;
+    }
+    
+</style>
+</head>
+<body>
+<div class="topbar">Colegio Santa Rita · Nivel Primario</div>
+<header>
+  <nav class="nav container">
+    <a class="brand" href="index.html">
+      <img src="logo-santa-rita.png" alt="Logo Colegio Santa Rita">
+      <div><b>COLEGIO SANTA RITA</b><small>Nivel Primario</small></div>
+    </a>
+    <a class="back" href="index.html#niveles">← Volver a niveles</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">Sección independiente</div>
+    <h1>Nivel Primario</h1>
+    <p>Formación integral y saberes fundamentales. Este espacio está preparado para centralizar información, imágenes, noticias, actividades y comunicados propios del nivel.</p>
+    <div class="hero-chips"><span class="chip">Turno mañana</span><span class="chip">7:00 a 12:00</span><span class="chip">Av. Santo Cristo y Leocadio Paz</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-title"><h2>Información del nivel</h2><p>Datos principales para estudiantes y familias.</p></div>
+    <div class="info-grid"><article class="info-card"><b>Propuesta</b><span>Saberes fundamentales, autonomía, convivencia y acompañamiento escolar.</span></article><article class="info-card"><b>Horario</b><span>Turno mañana · 7:00 a 12:00.</span></article><article class="info-card"><b>Ubicación</b><span>Av. Santo Cristo y Leocadio Paz.</span></article></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-title"><h2>Novedades</h2><p>Noticias y anuncios específicos de Nivel Primario.</p></div>
+    <div class="news-grid" id="levelNewsGrid">
+      <div class="level-news-status">Cargando novedades del nivel…</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="galeriaDrive">
+  <div class="container">
+    <div class="section-title">
+      <h2>Galería del Nivel Primario</h2>
+      <p>Imágenes y actividades destacadas del nivel.</p>
+    </div>
+
+    
+
+    <div class="drive-gallery-grid" id="driveGalleryGrid">
+      <div class="drive-empty">
+        Las imágenes de esta sección aparecerán aquí.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="section-title"><h2>Requisitos e información útil</h2><p>Información organizada específicamente para este nivel.</p></div>
+    <div class="requirements">
+      <article class="req"><h3>Requisitos de inscripción</h3><ul><li>Fotocopia de DNI</li><li>Acta de nacimiento</li><li>Libreta de calificaciones o constancia de estudios</li><li>Informe pedagógico</li><li>Ficha médica</li><li>Contrato de enseñanza firmado</li></ul></article>
+      <article class="notice-box"><h3>Comunicados del nivel</h3><p>Este bloque podrá usarse para avisos de dirección, secretaría, docentes y actividades propias de Nivel Primario.</p></article>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Colegio Santa Rita · Banda del Río Salí · Tucumán</footer>
+<script>
+const btn=document.getElementById("togglePlan");
+btn?.addEventListener("click",()=>{
+  const p=document.getElementById("planImage");
+  p.classList.toggle("open");
+  btn.textContent=p.classList.contains("open")?"Ocultar Plan de Estudios":"Ver Plan de Estudios";
+});
+</script>
+
+<div class="drive-lightbox" id="driveLightbox" aria-hidden="true">
+  <div class="drive-lightbox-inner">
+    <div class="drive-lightbox-head">
+      <div class="drive-lightbox-title" id="driveLightboxTitle">Imagen</div>
+      <button class="drive-lightbox-close" id="driveLightboxClose">✕ Cerrar</button>
+    </div>
+    <div class="drive-lightbox-body">
+      <img id="driveLightboxImage" alt="Imagen ampliada">
+    </div>
+  </div>
+</div>
+
+
+<script>
+const DRIVE_GALLERY_API_URL = "https://script.google.com/macros/s/AKfycbwFNIseJFB1LNcYojwmuQQYjOdZMjxypDgrr-VtLsshf_n1f_Urv34diE7uV-egMCh8/exec";
+const DRIVE_GALLERY_LEVEL = "primario";
+
+
+function cleanGalleryDisplayTitle(value){
+  return String(value ?? "")
+    .replace(/^\d{8}\s+\d{6}\s+/,"")
+    .replace(/^\d{8}[-_]\d{6}[-_]/,"")
+    .replace(/^\d{14}[-_ ]?/,"")
+    .replace(/[_-]+/g," ")
+    .replace(/\s+/g," ")
+    .trim();
+}
+
+function escapeDriveText(value){
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+window.renderDriveGallery = function(payload){
+  const grid = document.getElementById("driveGalleryGrid");
+  const status = document.getElementById("driveGalleryStatus");
+  if(!grid) return;
+
+  if(!payload || payload.ok !== true){
+    if(status) status.textContent = "";
+    grid.innerHTML = '<div class="drive-empty">No se pudieron cargar las imágenes en este momento.</div>';
+    return;
+  }
+
+  const images = Array.isArray(payload.images) ? payload.images : [];
+
+  if(!images.length){
+    if(status) status.textContent = "";
+    grid.innerHTML = '<div class="drive-empty">Todavía no hay imágenes cargadas en esta sección.</div>';
+    return;
+  }
+
+  if(status) status.textContent = "";
+
+  grid.innerHTML = images.map((img, index) => `
+    <figure class="drive-photo"
+      data-full="${escapeDriveText(img.full)}"
+      data-title="${escapeDriveText(cleanGalleryDisplayTitle(img.title) || "Imagen del colegio")}">
+      <img src="${escapeDriveText(img.thumbnail)}"
+           alt="${escapeDriveText(cleanGalleryDisplayTitle(img.title) || "Imagen del colegio")}"
+           loading="lazy">
+      <figcaption>
+        ${escapeDriveText(cleanGalleryDisplayTitle(img.title) || "Imagen del colegio")}
+        <small>Ver imagen ampliada</small>
+      </figcaption>
+    </figure>
+  `).join("");
+
+  grid.querySelectorAll(".drive-photo").forEach(card => {
+    card.addEventListener("click", () => {
+      openDriveLightbox(card.dataset.full, card.dataset.title);
+    });
+  });
+};
+
+function openDriveLightbox(src, title){
+  const box = document.getElementById("driveLightbox");
+  const img = document.getElementById("driveLightboxImage");
+  const heading = document.getElementById("driveLightboxTitle");
+  if(!box || !img) return;
+  img.src = src || "";
+  heading.textContent = title || "Imagen";
+  box.classList.add("open");
+  box.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden";
+}
+
+function closeDriveLightbox(){
+  const box = document.getElementById("driveLightbox");
+  const img = document.getElementById("driveLightboxImage");
+  box?.classList.remove("open");
+  box?.setAttribute("aria-hidden","true");
+  if(img) img.src="";
+  document.body.style.overflow="";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("driveLightboxClose")?.addEventListener("click", closeDriveLightbox);
+  document.getElementById("driveLightbox")?.addEventListener("click", (e) => {
+    if(e.target?.id === "driveLightbox") closeDriveLightbox();
+  });
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape") closeDriveLightbox();
+  });
+
+  if(!DRIVE_GALLERY_API_URL || DRIVE_GALLERY_API_URL.includes("PEGAR_AQUI")) return;
+
+  const s = document.createElement("script");
+  s.src = DRIVE_GALLERY_API_URL
+    + "?action=gallery&level=" + encodeURIComponent(DRIVE_GALLERY_LEVEL)
+    + "&callback=renderDriveGallery&t=" + Date.now();
+  document.head.appendChild(s);
+});
+</script>
+
+
+<script>
+const LEVEL_NEWS_API = "https://script.google.com/macros/s/AKfycbwlh1kMeJjrKdIR6wkZrOS5kCFzg4ASalbs3llnNRI5V95EuHmXuqOUvOSCwRlaouwC3w/exec";
+const LEVEL_NEWS_DESTINATION = "primario";
+
+function levelNewsEsc(value){
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function levelNewsDate(value){
+  try {
+    return new Date(value).toLocaleDateString("es-AR",{
+      day:"2-digit",month:"short",year:"numeric"
+    });
+  } catch(e) {
+    return "";
+  }
+}
+
+window.renderLevelNews = function(payload){
+  const grid = document.getElementById("levelNewsGrid");
+  if(!grid) return;
+
+  if(!payload || payload.ok !== true || !Array.isArray(payload.publicaciones)){
+    grid.innerHTML = '<div class="level-news-status">No se pudieron cargar las novedades.</div>';
+    return;
+  }
+
+  const rows = [...payload.publicaciones].sort((a,b) => new Date(b.fecha) - new Date(a.fecha));
+
+  if(!rows.length){
+    grid.innerHTML = '<div class="level-news-status">Todavía no hay novedades publicadas para este nivel.</div>';
+    return;
+  }
+
+  grid.innerHTML = rows.slice(0,9).map(row => `
+    <article class="news-card">
+      <small>${levelNewsEsc(row.tipo || "Novedad")}</small>
+      <h3>${levelNewsEsc(row.titulo || "Publicación")}</h3>
+      <p>${levelNewsEsc(row.texto || "")}</p>
+      <div class="date">${levelNewsDate(row.fecha)} · ${levelNewsEsc(row.autor || "Colegio Santa Rita")}</div>
+    </article>
+  `).join("");
+};
+
+(function loadLevelNews(){
+  const s = document.createElement("script");
+  s.src = LEVEL_NEWS_API
+    + "?api=publicaciones&destino=" + encodeURIComponent(LEVEL_NEWS_DESTINATION)
+    + "&callback=renderLevelNews&t=" + Date.now();
+  document.head.appendChild(s);
+})();
+</script>
+
+</body>
+</html>
