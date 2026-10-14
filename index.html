@@ -3132,9 +3132,25 @@
   }
 }
 
+
+/* ===== V32 · NAVEGACIÓN MULTIPÁGINA ===== */
+
+body.page-home #niveles,
+body.page-home #superior,
+body.page-home #novedades,
+body.page-home #instagram,
+body.page-home #galeria,
+body.page-home #historia{
+  display:none !important;
+}
+body.page-home main > section.content:not(#niveles):not(#superior):not(#novedades):not(#instagram):not(#galeria){
+  /* Información útil permanece visible */
+}
+
+
 </style>
 </head>
-<body>
+<body class="page-home">
   <div id="confettiLayer" aria-hidden="true"></div>
   <div class="topbar">Colegio Santa Rita · Banda del Río Salí · Tucumán</div>
 
@@ -3149,11 +3165,11 @@
       </a>
 
       <ul class="menu" id="menu">
-        <li><a href="#niveles">Niveles</a></li>
-        <li><a href="#inscripciones">Inscripciones</a></li>
+        <li><a href="niveles.html">Niveles</a></li>
+        <li><a href="inscripciones.html">Inscripciones</a></li>
         <li><a href="novedades.html">Novedades</a></li>
-        <li><a href="#galeria">Galería</a></li>
-        <li><a href="#historia">Historia</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="historia.html">Historia</a></li>
       </ul>
 
       <div class="header-actions">
@@ -3179,15 +3195,15 @@
     <section class="hero" id="inicio">
       <div class="hero-grid">
         <div>
-          <div class="eyebrow">● Comunidad educativa</div>
-          <h1>Aprender, crecer y construir <span>futuro.</span></h1>
+          <div class="eyebrow">Colegio Santa Rita</div>
+          <h1>Aprender, crecer y construir futuro.</h1>
           <p>
             El Colegio Santa Rita acompaña cada etapa educativa con una propuesta integral,
             cercana, dinámica y actual, desde Nivel Inicial hasta Nivel Superior.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#niveles">Explorar niveles →</a>
-            <a class="btn btn-soft" href="#inscripciones">Ver inscripciones</a>
+            <a class="btn btn-primary" href="niveles.html">Explorar niveles →</a>
+            <a class="btn btn-soft" href="inscripciones.html">Ver inscripciones</a>
           </div>
         </div>
 
@@ -3203,10 +3219,10 @@
 
     <div class="shortcut-wrap">
       <div class="shortcuts">
-        <a class="shortcut" href="#niveles"><div class="shortcut-icon">🎓</div><div><b>Niveles</b><small>Oferta educativa</small></div></a>
-        <a class="shortcut" href="#inscripciones"><div class="shortcut-icon">📄</div><div><b>Inscripciones</b><small>Requisitos por nivel</small></div></a>
+        <a class="shortcut" href="niveles.html"><div class="shortcut-icon">🎓</div><div><b>Niveles</b><small>Oferta educativa</small></div></a>
+        <a class="shortcut" href="inscripciones.html"><div class="shortcut-icon">📄</div><div><b>Inscripciones</b><small>Requisitos por nivel</small></div></a>
         <a class="shortcut" href="novedades.html"><div class="shortcut-icon">📢</div><div><b>Novedades</b><small>Actualidad institucional</small></div></a>
-        <a class="shortcut" href="#galeria"><div class="shortcut-icon">📷</div><div><b>Galería</b><small>Momentos del colegio</small></div></a>
+        <a class="shortcut" href="galeria.html"><div class="shortcut-icon">📷</div><div><b>Galería</b><small>Momentos del colegio</small></div></a>
       </div>
     </div>
 <section class="notice-section" id="avisos">
@@ -3363,7 +3379,7 @@
               style="background:#fff;color:var(--navy);padding:13px 14px;border-radius:12px;text-align:center;font-weight:850;border:0;cursor:pointer;">
               Plan de Estudios
             </button>
-            <a href="#inscripciones">Requisitos de inscripción</a>
+            <a href="inscripciones.html">Requisitos de inscripción</a>
           </div>
         </div>
       </div>
@@ -4080,7 +4096,7 @@
     });
 
     // Desde el botón de requisitos de Superior, despliega los requisitos de ese nivel.
-    document.querySelectorAll('.superior-links a[href="#inscripciones"]').forEach(link => {
+    document.querySelectorAll('.superior-links a[href="inscripciones.html"]').forEach(link => {
       link.addEventListener("click", () => {
         setTimeout(() => {
           const superiorCard = document.querySelector('.level-card[data-level="superior"]');
