@@ -3148,6 +3148,119 @@ body.page-home main > section.content:not(#niveles):not(#superior):not(#novedade
 }
 
 
+
+/* ===== V33 · NAVEGACIÓN LIMPIA ===== */
+
+/* Inicio permanece como portada completa */
+body:not(.page-home) .schedule-strip{
+  display:none !important;
+}
+
+/* En páginas internas no repetir el gran escudo central */
+body:not(.page-home) .hero{
+  padding:42px 20px 32px !important;
+  min-height:auto !important;
+}
+
+body:not(.page-home) .hero-grid{
+  display:block !important;
+  width:min(1120px,100%) !important;
+  margin:auto !important;
+}
+
+body:not(.page-home) .hero-logo{
+  display:none !important;
+}
+
+body:not(.page-home) .hero-grid > div:first-child{
+  max-width:900px !important;
+}
+
+body:not(.page-home) .hero h1{
+  font-size:clamp(2.25rem,5vw,4rem) !important;
+  margin-bottom:12px !important;
+}
+
+body:not(.page-home) .hero p{
+  max-width:780px !important;
+  font-size:1.02rem !important;
+  line-height:1.7 !important;
+}
+
+body:not(.page-home) .hero-actions{
+  display:none !important;
+}
+
+/* Dar aire entre cabecera compacta y contenido real */
+body:not(.page-home) main > section:not(.hero):first-of-type{
+  margin-top:0 !important;
+}
+
+/* Página de inicio: accesos más completos */
+.page-home .shortcuts{
+  grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+}
+
+.page-home .shortcut{
+  min-height:116px;
+  align-items:center;
+}
+
+.home-intro{
+  width:min(1180px,calc(100% - 32px));
+  margin:28px auto 10px;
+  padding:26px;
+  border-radius:22px;
+  background:#fff;
+  border:1px solid #dce3ec;
+  box-shadow:0 12px 30px rgba(31,40,91,.06);
+}
+
+.home-intro .section-label{
+  margin-bottom:6px;
+}
+
+.home-intro h2{
+  margin:0 0 10px;
+  color:var(--navy);
+  font-size:clamp(1.7rem,3vw,2.4rem);
+}
+
+.home-intro p{
+  margin:0;
+  max-width:900px;
+  color:#3d475b;
+  line-height:1.7;
+  font-size:1rem;
+}
+
+@media(max-width:1040px){
+  .page-home .shortcuts{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+}
+
+@media(max-width:700px){
+  .page-home .shortcuts{
+    grid-template-columns:1fr !important;
+  }
+  body:not(.page-home) .hero{
+    padding:32px 16px 25px !important;
+  }
+}
+
+
+/* ===== V34 · NIVELES + REQUISITOS EN LA MISMA SECCIÓN ===== */
+.page-home .shortcuts{
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+}
+@media(max-width:900px){
+  .page-home .shortcuts{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+}
+@media(max-width:600px){
+  .page-home .shortcuts{grid-template-columns:1fr !important;}
+}
+
 </style>
 </head>
 <body class="page-home">
@@ -3156,7 +3269,7 @@ body.page-home main > section.content:not(#niveles):not(#superior):not(#novedade
 
   <header>
     <nav class="nav">
-      <a class="brand" href="#inicio">
+      <a class="brand" href="index.html">
         <img src="logo-santa-rita.png" alt="Logo Colegio Santa Rita">
         <div>
           <b>COLEGIO SANTA RITA</b>
@@ -3165,8 +3278,8 @@ body.page-home main > section.content:not(#niveles):not(#superior):not(#novedade
       </a>
 
       <ul class="menu" id="menu">
+        <li><a href="index.html">Inicio</a></li>
         <li><a href="niveles.html">Niveles</a></li>
-        <li><a href="inscripciones.html">Inscripciones</a></li>
         <li><a href="novedades.html">Novedades</a></li>
         <li><a href="galeria.html">Galería</a></li>
         <li><a href="historia.html">Historia</a></li>
@@ -3203,7 +3316,7 @@ body.page-home main > section.content:not(#niveles):not(#superior):not(#novedade
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="niveles.html">Explorar niveles →</a>
-            <a class="btn btn-soft" href="inscripciones.html">Ver inscripciones</a>
+            <a class="btn btn-soft" href="niveles.html">Ver niveles y requisitos</a>
           </div>
         </div>
 
@@ -3220,11 +3333,21 @@ body.page-home main > section.content:not(#niveles):not(#superior):not(#novedade
     <div class="shortcut-wrap">
       <div class="shortcuts">
         <a class="shortcut" href="niveles.html"><div class="shortcut-icon">🎓</div><div><b>Niveles</b><small>Oferta educativa</small></div></a>
-        <a class="shortcut" href="inscripciones.html"><div class="shortcut-icon">📄</div><div><b>Inscripciones</b><small>Requisitos por nivel</small></div></a>
         <a class="shortcut" href="novedades.html"><div class="shortcut-icon">📢</div><div><b>Novedades</b><small>Actualidad institucional</small></div></a>
         <a class="shortcut" href="galeria.html"><div class="shortcut-icon">📷</div><div><b>Galería</b><small>Momentos del colegio</small></div></a>
+        <a class="shortcut" href="historia.html"><div class="shortcut-icon">📚</div><div><b>Historia</b><small>Trayectoria institucional</small></div></a>
       </div>
     </div>
+
+    <section class="home-intro">
+      <div class="section-label">Inicio</div>
+      <h2>Todo el colegio, organizado en secciones</h2>
+      <p>
+        Usá el menú superior o los accesos de esta portada para ingresar directamente a la información que necesitás.
+        Cada sección tiene su propia página, evitando repetir contenidos y facilitando la navegación desde celular o computadora.
+      </p>
+    </section>
+
 <section class="notice-section" id="avisos">
       <div class="notice-wrap">
         <article class="notice-main">
@@ -3379,7 +3502,7 @@ body.page-home main > section.content:not(#niveles):not(#superior):not(#novedade
               style="background:#fff;color:var(--navy);padding:13px 14px;border-radius:12px;text-align:center;font-weight:850;border:0;cursor:pointer;">
               Plan de Estudios
             </button>
-            <a href="inscripciones.html">Requisitos de inscripción</a>
+            <a href="niveles.html">Requisitos de inscripción</a>
           </div>
         </div>
       </div>
@@ -4096,7 +4219,7 @@ body.page-home main > section.content:not(#niveles):not(#superior):not(#novedade
     });
 
     // Desde el botón de requisitos de Superior, despliega los requisitos de ese nivel.
-    document.querySelectorAll('.superior-links a[href="inscripciones.html"]').forEach(link => {
+    document.querySelectorAll('.superior-links a[href="niveles.html"]').forEach(link => {
       link.addEventListener("click", () => {
         setTimeout(() => {
           const superiorCard = document.querySelector('.level-card[data-level="superior"]');
