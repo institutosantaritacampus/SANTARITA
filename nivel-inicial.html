@@ -519,7 +519,171 @@ body{
       display:none !important;
     }
     
+
+/* ===== V35 · MENÚ MÁS GRANDE Y LEGIBLE ===== */
+.nav{
+  min-height:88px !important;
+}
+.menu{
+  gap:14px !important;
+}
+.menu a{
+  padding:13px 19px !important;
+  min-height:46px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border-radius:13px !important;
+  font-size:1rem !important;
+  font-weight:900 !important;
+}
+.menu a:hover{
+  transform:translateY(-2px) !important;
+}
+body.page-home .menu a[href="index.html"],
+body.page-niveles .menu a[href="niveles.html"],
+body.page-galeria .menu a[href="galeria.html"],
+body.page-historia .menu a[href="historia.html"]{
+  background:linear-gradient(135deg,var(--navy),var(--navy2)) !important;
+  border-color:transparent !important;
+  color:#fff !important;
+  box-shadow:0 8px 18px rgba(39,48,108,.16) !important;
+}
+
+@media(max-width:900px){
+  .nav{min-height:76px !important;}
+  .menu a{
+    min-height:44px !important;
+    padding:11px 14px !important;
+    font-size:.94rem !important;
+  }
+}
+
+
+/* ===== V36 · MÁS COLOR + IDENTIDAD DEL COLEGIO MÁS GRANDE ===== */
+
+/* Logo y nombre institucional más grandes */
+.nav{
+  min-height:102px !important;
+}
+.brand{
+  gap:16px !important;
+  min-width:320px !important;
+}
+.brand img{
+  width:72px !important;
+  height:72px !important;
+  border:3px solid #eadfc8 !important;
+  box-shadow:0 7px 18px rgba(31,40,91,.12) !important;
+}
+.brand b{
+  font-size:1.18rem !important;
+  letter-spacing:.05em !important;
+}
+.brand small{
+  margin-top:5px !important;
+  font-size:.82rem !important;
+  color:#596479 !important;
+}
+
+/* Recuadros del menú con un poco más de color */
+.menu a{
+  border-width:1.5px !important;
+  box-shadow:0 5px 12px rgba(31,40,91,.05) !important;
+}
+.menu li:nth-child(1) a{
+  background:#eef3ff;
+  border-color:#cbd7f4;
+}
+.menu li:nth-child(2) a{
+  background:#fff6df;
+  border-color:#eedaa5;
+}
+.menu li:nth-child(3) a{
+  background:#fff0f3;
+  border-color:#efc8d0;
+}
+.menu li:nth-child(4) a{
+  background:#f0edff;
+  border-color:#d5cdf4;
+}
+.menu li:nth-child(5) a{
+  background:#eaf7f4;
+  border-color:#c4e3dc;
+}
+
+/* Tarjetas con más presencia de color */
+.level-card[data-level="inicial"]{
+  background:linear-gradient(145deg,#fff0c8 0%,#fff8e8 42%,#ffffff 100%) !important;
+  border-color:#ecd08a !important;
+  box-shadow:0 10px 26px rgba(184,126,0,.09) !important;
+}
+.level-card[data-level="primario"]{
+  background:linear-gradient(145deg,#deeeff 0%,#f2f8ff 42%,#ffffff 100%) !important;
+  border-color:#b6d2ef !important;
+  box-shadow:0 10px 26px rgba(32,94,170,.09) !important;
+}
+.level-card[data-level="secundario"]{
+  background:linear-gradient(145deg,#ffe1e7 0%,#fff3f5 42%,#ffffff 100%) !important;
+  border-color:#e9bcc5 !important;
+  box-shadow:0 10px 26px rgba(169,47,66,.09) !important;
+}
+.level-card[data-level="superior"]{
+  background:linear-gradient(145deg,#e8e0ff 0%,#f5f1ff 42%,#ffffff 100%) !important;
+  border-color:#cbbdf0 !important;
+  box-shadow:0 10px 26px rgba(91,59,170,.09) !important;
+}
+
+/* Accesos de Inicio con color suave */
+.shortcut:nth-child(1){background:linear-gradient(145deg,#edf4ff,#fff) !important}
+.shortcut:nth-child(2){background:linear-gradient(145deg,#fff5de,#fff) !important}
+.shortcut:nth-child(3){background:linear-gradient(145deg,#fff0f3,#fff) !important}
+.shortcut:nth-child(4){background:linear-gradient(145deg,#f1edff,#fff) !important}
+.shortcut:nth-child(5){background:linear-gradient(145deg,#eaf7f4,#fff) !important}
+
+/* Tarjetas de información también un poco más vivas */
+.institution-card:nth-child(1){background:linear-gradient(145deg,#f2f6ff,#fff) !important}
+.institution-card:nth-child(2){background:linear-gradient(145deg,#fff7e7,#fff) !important}
+.institution-card:nth-child(3){background:linear-gradient(145deg,#f3efff,#fff) !important}
+
+@media(max-width:900px){
+  .nav{min-height:88px !important;}
+  .brand{
+    min-width:0 !important;
+    gap:11px !important;
+  }
+  .brand img{
+    width:58px !important;
+    height:58px !important;
+  }
+  .brand b{
+    font-size:.94rem !important;
+  }
+  .brand small{
+    font-size:.72rem !important;
+  }
+}
+
+@media(max-width:620px){
+  .brand img{
+    width:54px !important;
+    height:54px !important;
+  }
+  .brand b{
+    font-size:.86rem !important;
+  }
+  .brand small{
+    display:block !important;
+    font-size:.66rem !important;
+  }
+}
+
 </style>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#202a73">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script src="push-notifications.js" defer></script>
 </head>
 <body>
 <div class="topbar">Colegio Santa Rita · Nivel Inicial</div>

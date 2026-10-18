@@ -354,7 +354,36 @@
   border-color:var(--navy);
 }
 
+
+/* ===== V35 · NAVEGACIÓN DE NOVEDADES MÁS GRANDE ===== */
+.quick-nav{
+  gap:10px !important;
+  margin-top:18px !important;
+}
+.quick-nav a{
+  padding:12px 17px !important;
+  min-height:44px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  font-size:.92rem !important;
+  font-weight:900 !important;
+  border-radius:13px !important;
+}
+
+
+.quick-nav a:nth-child(1){background:#eef3ff !important;border-color:#cbd7f4 !important}
+.quick-nav a:nth-child(2){background:#fff6df !important;border-color:#eedaa5 !important}
+.quick-nav a:nth-child(3){background:#fff0f3 !important;border-color:#efc8d0 !important}
+.quick-nav a:nth-child(4){background:#f0edff !important;border-color:#d5cdf4 !important}
+.quick-nav a:nth-child(5){background:#eaf7f4 !important;border-color:#c4e3dc !important}
+
 </style>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#202a73">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script src="push-notifications.js" defer></script>
 </head>
 <body>
   <div class="top">Colegio Santa Rita · Novedades institucionales</div>

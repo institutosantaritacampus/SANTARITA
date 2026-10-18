@@ -1,0 +1,20 @@
+COLEGIO SANTA RITA — V37
+
+NUEVO:
+- En la pantalla de Inicio pueden ir pasando fotos del colegio como fondo.
+- Las fotos aparecen en orden aleatorio.
+- Cambio automático cada 6,5 segundos.
+- Transición suave entre una y otra.
+- Se mantiene una capa clara encima para que los títulos y botones siempre sean legibles.
+- Si no hay fotos cargadas, la portada conserva automáticamente el fondo actual.
+
+CÓMO ELEGIR LAS FOTOS:
+Subir dentro de la carpeta "fotos-inicio" las imágenes elegidas con estos nombres:
+foto-01.jpg
+foto-02.jpg
+foto-03.jpg
+...
+foto-12.jpg
+
+No es necesario usar las 12.
+La página detecta automáticamente las que existan.

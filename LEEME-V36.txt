@@ -1,0 +1,9 @@
+COLEGIO SANTA RITA — V36
+
+CAMBIOS:
+- Logo del colegio más grande.
+- Nombre COLEGIO SANTA RITA más grande.
+- Texto Inicial · Primario · Secundario · Superior más legible.
+- Menú superior con fondos suaves de distintos colores.
+- Tarjetas de niveles con más color, sin perder el estilo institucional.
+- Accesos de Inicio e Información útil con fondos más vivos.

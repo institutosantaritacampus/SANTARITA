@@ -1,0 +1,9 @@
+COLEGIO SANTA RITA — V35
+
+CAMBIOS:
+- El menú superior es más grande y más legible.
+- Los botones tienen más alto, más ancho y texto más grande.
+- La sección activa queda destacada.
+- En Niveles se eliminó el corte fuerte entre el fondo de la cabecera y el fondo de la sección.
+- Ahora el fondo fluye con un degradado continuo y suave.
+- Se mantienen los requisitos desplegables dentro de cada nivel.

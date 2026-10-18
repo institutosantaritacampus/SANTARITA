@@ -1,0 +1,10 @@
+COLEGIO SANTA RITA — V39
+
+CAMBIOS EN LA PORTADA:
+- Las fotos ahora se ven con mucha más intensidad.
+- Se redujo considerablemente el velo blanco.
+- La portada es más alta para mostrar más superficie de cada imagen.
+- Se aumentó levemente saturación y contraste.
+- El escudo central ocupa un poco menos para no tapar tanto la fotografía.
+- Los textos conservan legibilidad mediante sombra clara.
+- En celular también se muestran las fotos con mayor presencia.

@@ -1,0 +1,22 @@
+NOTIFICACIONES WEB PUSH — COLEGIO SANTA RITA
+
+ARCHIVOS NUEVOS IMPORTANTES:
+- push-notifications.js
+- OneSignalSDKWorker.js
+- manifest.webmanifest
+- icon-192.png
+- icon-256.png
+- icon-512.png
+
+ONESIGNAL:
+Site URL / Origin:
+https://institutosantaritacampus.github.io
+
+Default Icon URL:
+https://institutosantaritacampus.github.io/SANTARITA/icon-256.png
+
+SERVICE WORKER:
+https://institutosantaritacampus.github.io/SANTARITA/OneSignalSDKWorker.js
+
+La página pública completa del colegio es:
+https://institutosantaritacampus.github.io/SANTARITA/

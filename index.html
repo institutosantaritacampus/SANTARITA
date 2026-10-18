@@ -3261,7 +3261,376 @@ body:not(.page-home) main > section:not(.hero):first-of-type{
   .page-home .shortcuts{grid-template-columns:1fr !important;}
 }
 
+
+/* ===== V35 · MENÚ MÁS GRANDE Y LEGIBLE ===== */
+.nav{
+  min-height:88px !important;
+}
+.menu{
+  gap:14px !important;
+}
+.menu a{
+  padding:13px 19px !important;
+  min-height:46px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border-radius:13px !important;
+  font-size:1rem !important;
+  font-weight:900 !important;
+}
+.menu a:hover{
+  transform:translateY(-2px) !important;
+}
+body.page-home .menu a[href="index.html"],
+body.page-niveles .menu a[href="niveles.html"],
+body.page-galeria .menu a[href="galeria.html"],
+body.page-historia .menu a[href="historia.html"]{
+  background:linear-gradient(135deg,var(--navy),var(--navy2)) !important;
+  border-color:transparent !important;
+  color:#fff !important;
+  box-shadow:0 8px 18px rgba(39,48,108,.16) !important;
+}
+
+@media(max-width:900px){
+  .nav{min-height:76px !important;}
+  .menu a{
+    min-height:44px !important;
+    padding:11px 14px !important;
+    font-size:.94rem !important;
+  }
+}
+
+
+/* ===== V36 · MÁS COLOR + IDENTIDAD DEL COLEGIO MÁS GRANDE ===== */
+
+/* Logo y nombre institucional más grandes */
+.nav{
+  min-height:102px !important;
+}
+.brand{
+  gap:16px !important;
+  min-width:320px !important;
+}
+.brand img{
+  width:72px !important;
+  height:72px !important;
+  border:3px solid #eadfc8 !important;
+  box-shadow:0 7px 18px rgba(31,40,91,.12) !important;
+}
+.brand b{
+  font-size:1.18rem !important;
+  letter-spacing:.05em !important;
+}
+.brand small{
+  margin-top:5px !important;
+  font-size:.82rem !important;
+  color:#596479 !important;
+}
+
+/* Recuadros del menú con un poco más de color */
+.menu a{
+  border-width:1.5px !important;
+  box-shadow:0 5px 12px rgba(31,40,91,.05) !important;
+}
+.menu li:nth-child(1) a{
+  background:#eef3ff;
+  border-color:#cbd7f4;
+}
+.menu li:nth-child(2) a{
+  background:#fff6df;
+  border-color:#eedaa5;
+}
+.menu li:nth-child(3) a{
+  background:#fff0f3;
+  border-color:#efc8d0;
+}
+.menu li:nth-child(4) a{
+  background:#f0edff;
+  border-color:#d5cdf4;
+}
+.menu li:nth-child(5) a{
+  background:#eaf7f4;
+  border-color:#c4e3dc;
+}
+
+/* Tarjetas con más presencia de color */
+.level-card[data-level="inicial"]{
+  background:linear-gradient(145deg,#fff0c8 0%,#fff8e8 42%,#ffffff 100%) !important;
+  border-color:#ecd08a !important;
+  box-shadow:0 10px 26px rgba(184,126,0,.09) !important;
+}
+.level-card[data-level="primario"]{
+  background:linear-gradient(145deg,#deeeff 0%,#f2f8ff 42%,#ffffff 100%) !important;
+  border-color:#b6d2ef !important;
+  box-shadow:0 10px 26px rgba(32,94,170,.09) !important;
+}
+.level-card[data-level="secundario"]{
+  background:linear-gradient(145deg,#ffe1e7 0%,#fff3f5 42%,#ffffff 100%) !important;
+  border-color:#e9bcc5 !important;
+  box-shadow:0 10px 26px rgba(169,47,66,.09) !important;
+}
+.level-card[data-level="superior"]{
+  background:linear-gradient(145deg,#e8e0ff 0%,#f5f1ff 42%,#ffffff 100%) !important;
+  border-color:#cbbdf0 !important;
+  box-shadow:0 10px 26px rgba(91,59,170,.09) !important;
+}
+
+/* Accesos de Inicio con color suave */
+.shortcut:nth-child(1){background:linear-gradient(145deg,#edf4ff,#fff) !important}
+.shortcut:nth-child(2){background:linear-gradient(145deg,#fff5de,#fff) !important}
+.shortcut:nth-child(3){background:linear-gradient(145deg,#fff0f3,#fff) !important}
+.shortcut:nth-child(4){background:linear-gradient(145deg,#f1edff,#fff) !important}
+.shortcut:nth-child(5){background:linear-gradient(145deg,#eaf7f4,#fff) !important}
+
+/* Tarjetas de información también un poco más vivas */
+.institution-card:nth-child(1){background:linear-gradient(145deg,#f2f6ff,#fff) !important}
+.institution-card:nth-child(2){background:linear-gradient(145deg,#fff7e7,#fff) !important}
+.institution-card:nth-child(3){background:linear-gradient(145deg,#f3efff,#fff) !important}
+
+@media(max-width:900px){
+  .nav{min-height:88px !important;}
+  .brand{
+    min-width:0 !important;
+    gap:11px !important;
+  }
+  .brand img{
+    width:58px !important;
+    height:58px !important;
+  }
+  .brand b{
+    font-size:.94rem !important;
+  }
+  .brand small{
+    font-size:.72rem !important;
+  }
+}
+
+@media(max-width:620px){
+  .brand img{
+    width:54px !important;
+    height:54px !important;
+  }
+  .brand b{
+    font-size:.86rem !important;
+  }
+  .brand small{
+    display:block !important;
+    font-size:.66rem !important;
+  }
+}
+
+
+/* ===== V37 · FOTOS ALEATORIAS EN LA PORTADA ===== */
+.page-home .hero{
+  position:relative !important;
+  isolation:isolate;
+  background:
+    radial-gradient(circle at 10% 16%,rgba(241,207,114,.32),transparent 28%),
+    radial-gradient(circle at 89% 20%,rgba(66,83,184,.22),transparent 32%),
+    radial-gradient(circle at 75% 85%,rgba(227,90,103,.18),transparent 28%),
+    linear-gradient(135deg,#ffffff 0%,#eef2ff 52%,#fff4f3 100%) !important;
+}
+
+.hero-slideshow{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.hero-slide{
+  position:absolute;
+  inset:-2%;
+  opacity:0;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  transform:scale(1.045);
+  transition:opacity 1.35s ease, transform 8s ease;
+}
+
+.hero-slide.active{
+  opacity:1;
+  transform:scale(1);
+}
+
+.hero-photo-overlay{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:
+    linear-gradient(90deg,
+      rgba(250,250,252,.92) 0%,
+      rgba(250,250,252,.78) 34%,
+      rgba(245,247,252,.48) 62%,
+      rgba(246,240,243,.36) 100%),
+    linear-gradient(180deg,rgba(15,25,70,.05),rgba(15,25,70,.12));
+  pointer-events:none;
+}
+
+.page-home .hero-grid{
+  position:relative;
+  z-index:3 !important;
+}
+
+.page-home .hero::after{
+  z-index:2 !important;
+}
+
+/* Si hay fotos, texto más contundente para mantener legibilidad */
+.page-home.hero-has-photos .hero h1,
+.page-home .hero.hero-has-photos h1{
+  text-shadow:0 2px 18px rgba(255,255,255,.65);
+}
+
+.page-home .hero.hero-has-photos p{
+  color:#30394d !important;
+  font-weight:650;
+  text-shadow:0 1px 8px rgba(255,255,255,.78);
+}
+
+.page-home .hero.hero-has-photos .eyebrow{
+  background:rgba(255,255,255,.88) !important;
+  backdrop-filter:blur(8px);
+}
+
+/* El escudo queda visible pero menos pesado sobre las fotos */
+.page-home .hero.hero-has-photos .logo-panel{
+  background:rgba(255,255,255,.78) !important;
+  backdrop-filter:blur(10px);
+  box-shadow:0 18px 46px rgba(20,30,70,.16) !important;
+}
+
+@media(max-width:700px){
+  .hero-photo-overlay{
+    background:
+      linear-gradient(180deg,
+        rgba(250,250,252,.89) 0%,
+        rgba(250,250,252,.76) 58%,
+        rgba(248,242,244,.70) 100%);
+  }
+  .hero-slide{
+    background-position:center center;
+  }
+}
+
+
+/* ===== V39 · FOTOS MÁS GRANDES Y MÁS INTENSAS EN INICIO ===== */
+.page-home .hero{
+  min-height:690px !important;
+  padding:92px 20px 122px !important;
+  display:flex !important;
+  align-items:center !important;
+}
+
+.page-home .hero-grid{
+  width:min(1240px,100%) !important;
+  gap:82px !important;
+}
+
+/* La foto ocupa mejor toda la portada */
+.page-home .hero-slide{
+  inset:0 !important;
+  background-size:cover !important;
+  background-position:center 42% !important;
+  filter:saturate(1.12) contrast(1.04) brightness(.98);
+  transform:scale(1.035);
+}
+
+.page-home .hero-slide.active{
+  transform:scale(1);
+}
+
+/* Mucho menos velo blanco: ahora la foto se aprecia */
+.page-home .hero-photo-overlay{
+  background:
+    linear-gradient(90deg,
+      rgba(248,249,252,.62) 0%,
+      rgba(248,249,252,.48) 30%,
+      rgba(242,244,250,.27) 58%,
+      rgba(236,229,234,.16) 100%),
+    linear-gradient(180deg,
+      rgba(14,22,58,.03) 0%,
+      rgba(14,22,58,.11) 100%) !important;
+}
+
+/* El texto sigue siendo perfectamente legible */
+.page-home .hero.hero-has-photos h1{
+  text-shadow:
+    0 2px 2px rgba(255,255,255,.82),
+    0 6px 24px rgba(255,255,255,.64) !important;
+}
+
+.page-home .hero.hero-has-photos p{
+  color:#202b47 !important;
+  font-weight:750 !important;
+  text-shadow:
+    0 1px 2px rgba(255,255,255,.92),
+    0 3px 12px rgba(255,255,255,.82) !important;
+}
+
+.page-home .hero.hero-has-photos .eyebrow{
+  background:rgba(255,255,255,.83) !important;
+  border-color:rgba(255,255,255,.72) !important;
+  box-shadow:0 8px 22px rgba(20,30,70,.08) !important;
+}
+
+/* Reducimos un poco el cuadro blanco del escudo para mostrar más foto */
+.page-home .hero.hero-has-photos .logo-panel{
+  width:min(330px,86%) !important;
+  padding:17px !important;
+  background:rgba(255,255,255,.70) !important;
+  backdrop-filter:blur(7px) !important;
+  border-color:rgba(255,255,255,.68) !important;
+}
+
+/* Los accesos inferiores quedan un poco más abajo y dejan ver más portada */
+.page-home .shortcut-wrap{
+  margin-top:-42px !important;
+}
+
+@media(max-width:900px){
+  .page-home .hero{
+    min-height:620px !important;
+    padding:74px 18px 105px !important;
+  }
+  .page-home .hero-grid{
+    gap:42px !important;
+  }
+}
+
+@media(max-width:700px){
+  .page-home .hero{
+    min-height:650px !important;
+    padding:64px 16px 96px !important;
+  }
+
+  .page-home .hero-photo-overlay{
+    background:
+      linear-gradient(180deg,
+        rgba(250,250,252,.58) 0%,
+        rgba(248,248,251,.45) 52%,
+        rgba(244,238,241,.37) 100%) !important;
+  }
+
+  .page-home .hero-slide{
+    background-position:center center !important;
+    filter:saturate(1.10) contrast(1.03) brightness(.96);
+  }
+
+  .page-home .hero.hero-has-photos .logo-panel{
+    width:min(280px,82%) !important;
+  }
+}
+
 </style>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#202a73">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script src="push-notifications.js" defer></script>
 </head>
 <body class="page-home">
   <div id="confettiLayer" aria-hidden="true"></div>
@@ -3306,6 +3675,11 @@ body:not(.page-home) main > section:not(.hero):first-of-type{
 
   <main>
     <section class="hero" id="inicio">
+      <div class="hero-slideshow" id="heroSlideshow" aria-hidden="true">
+        <div class="hero-slide" id="heroSlideA"></div>
+        <div class="hero-slide" id="heroSlideB"></div>
+      </div>
+      <div class="hero-photo-overlay" aria-hidden="true"></div>
       <div class="hero-grid">
         <div>
           <div class="eyebrow">Colegio Santa Rita</div>
@@ -3364,10 +3738,27 @@ body:not(.page-home) main > section:not(.hero):first-of-type{
         </article>
 
         <aside class="notice-actions">
-          <b>Recibir avisos</b>
-          <p>Activá los permisos del navegador para recibir alertas cuando haya novedades institucionales.</p>
-          <button class="notify-btn" id="enableNotifications">Activar notificaciones</button>
-          <div class="notify-status" id="notifyStatus">El permiso se solicita solamente si vos lo autorizás.</div>
+          <b>Recibir avisos en el celular</b>
+          <p>
+            Activá las notificaciones una sola vez. Cuando Rectoría publique un nuevo aviso,
+            vas a recibir una alerta aunque la página no esté abierta.
+          </p>
+
+          <label for="parentNotificationLevel" style="display:block;margin:10px 0 6px;font-weight:850;color:#273354">
+            Avisos que querés recibir
+          </label>
+          <select id="parentNotificationLevel" style="width:100%;border:1px solid #cfd8e6;border-radius:11px;padding:10px 11px;margin-bottom:9px;background:#fff;color:#273354">
+            <option value="todos">Todos los niveles</option>
+            <option value="inicial">Nivel Inicial</option>
+            <option value="primario">Nivel Primario</option>
+            <option value="secundario">Nivel Secundario</option>
+            <option value="superior">Nivel Superior</option>
+          </select>
+
+          <button class="notify-btn" id="enableNotifications">🔔 Activar notificaciones</button>
+          <div class="notify-status" id="notifyStatus">
+            Elegí el nivel y tocá Activar notificaciones.
+          </div>
         </aside>
       </div>
     </section>
@@ -3788,25 +4179,51 @@ body:not(.page-home) main > section:not(.hero):first-of-type{
     document.getElementById("closeNotices").addEventListener("click", closeDrawer);
     backdrop.addEventListener("click", closeDrawer);
 
-    // Permiso de notificaciones del navegador.
+    // Notificaciones push reales para las familias (OneSignal).
     document.getElementById("enableNotifications").addEventListener("click", async () => {
       const status = document.getElementById("notifyStatus");
-      if (!("Notification" in window)) {
-        status.textContent = "Este navegador no admite notificaciones.";
-        return;
-      }
-      const permission = await Notification.requestPermission();
-      if (permission === "granted") {
-        status.textContent = "Notificaciones autorizadas en este dispositivo.";
-        new Notification("Colegio Santa Rita", {
-          body: "Los avisos institucionales están habilitados.",
-          icon: "logo-santa-rita.png"
-        });
-      } else {
-        status.textContent = "El permiso de notificaciones no fue concedido.";
+      const button = document.getElementById("enableNotifications");
+      const level = document.getElementById("parentNotificationLevel").value;
+
+      button.disabled = true;
+      status.textContent = "Activando notificaciones…";
+
+      try{
+        if(!window.SantaRitaPush){
+          throw new Error("El sistema de notificaciones todavía se está cargando. Intentá nuevamente en unos segundos.");
+        }
+
+        const result = await window.SantaRitaPush.subscribe(level);
+
+        if(result.permission){
+          localStorage.setItem("santaRitaParentPushLevel", level);
+          status.textContent = "✅ Listo. Este dispositivo recibirá los avisos de Rectoría.";
+          button.textContent = "✅ Notificaciones activadas";
+        }else{
+          status.textContent = "No se pudo activar el permiso de notificaciones.";
+        }
+      }catch(err){
+        status.textContent = err.message || String(err);
+      }finally{
+        button.disabled = false;
       }
     });
 
+    window.addEventListener("DOMContentLoaded", async () => {
+      const saved = localStorage.getItem("santaRitaParentPushLevel");
+      if(saved){
+        const sel = document.getElementById("parentNotificationLevel");
+        if(sel && [...sel.options].some(o => o.value === saved)) sel.value = saved;
+      }
+
+      if(window.SantaRitaPush){
+        const state = await window.SantaRitaPush.status();
+        if(state.ready && state.permission && state.optedIn){
+          document.getElementById("enableNotifications").textContent = "✅ Notificaciones activadas";
+          document.getElementById("notifyStatus").textContent = "Este dispositivo ya está suscripto a los avisos del colegio.";
+        }
+      }
+    });
     // Render de Instagram vía backend seguro.
     window.renderSantaRitaInstagram = function(payload){
       if (!payload || !Array.isArray(payload.instagram) || !payload.instagram.length) return;
@@ -4612,6 +5029,73 @@ body:not(.page-home) main > section:not(.hero):first-of-type{
         if(list) list.innerHTML = '<div class="drawer-empty">No se pudieron cargar los avisos en este momento.</div>';
       };
       document.head.appendChild(s);
+    })();
+
+
+    // ===== V37 · SLIDESHOW ALEATORIO DE PORTADA =====
+    (function(){
+      const hero = document.getElementById("inicio");
+      const slideA = document.getElementById("heroSlideA");
+      const slideB = document.getElementById("heroSlideB");
+      if(!hero || !slideA || !slideB) return;
+
+      const candidates = Array.from({length:12}, (_,i) => {
+        const n = String(i + 1).padStart(2,"0");
+        return `fotos-inicio/foto-${n}.jpg`;
+      });
+
+      function testImage(src){
+        return new Promise(resolve => {
+          const img = new Image();
+          img.onload = () => resolve(src);
+          img.onerror = () => resolve(null);
+          img.src = src + `?v=${Date.now()}`;
+        });
+      }
+
+      function shuffle(arr){
+        const copy = [...arr];
+        for(let i = copy.length - 1; i > 0; i--){
+          const j = Math.floor(Math.random() * (i + 1));
+          [copy[i],copy[j]] = [copy[j],copy[i]];
+        }
+        return copy;
+      }
+
+      Promise.all(candidates.map(testImage)).then(results => {
+        let photos = results.filter(Boolean);
+        if(!photos.length) return;
+
+        photos = shuffle(photos);
+        hero.classList.add("hero-has-photos");
+
+        let active = slideA;
+        let hidden = slideB;
+        let index = 0;
+
+        function show(src, first=false){
+          hidden.style.backgroundImage = `url("${src}")`;
+          hidden.classList.add("active");
+          if(!first) active.classList.remove("active");
+
+          const tmp = active;
+          active = hidden;
+          hidden = tmp;
+        }
+
+        show(photos[index], true);
+
+        if(photos.length === 1) return;
+
+        setInterval(() => {
+          index++;
+          if(index >= photos.length){
+            photos = shuffle(photos);
+            index = 0;
+          }
+          show(photos[index]);
+        }, 6500);
+      });
     })();
 
 </script>
