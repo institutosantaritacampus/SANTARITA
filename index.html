@@ -3625,6 +3625,23 @@ body.page-historia .menu a[href="historia.html"]{
   }
 }
 
+
+/* ===== V40.3 · FOTOS DE PORTADA DESDE LA RAÍZ ===== */
+.page-home .hero-slide{
+  filter:saturate(1.18) contrast(1.06) brightness(.98) !important;
+}
+.page-home .hero-photo-overlay{
+  background:
+    linear-gradient(90deg,
+      rgba(248,249,252,.52) 0%,
+      rgba(248,249,252,.40) 31%,
+      rgba(242,244,250,.21) 58%,
+      rgba(236,229,234,.11) 100%),
+    linear-gradient(180deg,
+      rgba(14,22,58,.02) 0%,
+      rgba(14,22,58,.08) 100%) !important;
+}
+
 </style>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#202a73">
@@ -5041,7 +5058,7 @@ body.page-historia .menu a[href="historia.html"]{
 
       const candidates = Array.from({length:12}, (_,i) => {
         const n = String(i + 1).padStart(2,"0");
-        return `fotos-inicio/foto-${n}.jpg`;
+        return `foto-inicio-${n}.jpg`;
       });
 
       function testImage(src){

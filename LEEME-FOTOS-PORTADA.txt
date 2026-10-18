@@ -1,0 +1,18 @@
+COLEGIO SANTA RITA — V40.3
+
+CORRECCIÓN DE FOTOS DE PORTADA
+
+Las 5 fotos ahora están en la RAÍZ del sitio, no dentro de una subcarpeta.
+
+Archivos que deben estar visibles en GitHub junto a index.html:
+- foto-inicio-01.jpg
+- foto-inicio-02.jpg
+- foto-inicio-03.jpg
+- foto-inicio-04.jpg
+- foto-inicio-05.jpg
+
+IMPORTANTE:
+Subir estos cinco archivos al mismo nivel que index.html.
+
+Esto evita que GitHub Pages no encuentre la carpeta fotos-inicio
+cuando la carga se hace manualmente desde la web de GitHub.
