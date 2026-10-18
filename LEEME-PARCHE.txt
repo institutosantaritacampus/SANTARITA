@@ -1,0 +1,20 @@
+COLEGIO SANTA RITA — PARCHE ONESIGNAL V40.5
+
+CORRECCIÓN:
+La ruta del Service Worker para GitHub Pages ahora apunta correctamente a:
+
+/SANTARITA/OneSignalSDKWorker.js
+
+SUBIR/REEMPLAZAR EN GITHUB:
+- push-notifications.js
+- OneSignalSDKWorker.js
+- manifest.webmanifest
+
+Deben quedar en la misma carpeta raíz donde está index.html.
+
+COMPROBACIÓN:
+Abrir:
+https://institutosantaritacampus.github.io/SANTARITA/OneSignalSDKWorker.js
+
+Debe mostrar:
+importScripts("https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js");
