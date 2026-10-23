@@ -1081,6 +1081,15 @@
       background:linear-gradient(135deg,#54379d,var(--superior));
     }
 
+    .gallery-tabs button[data-gallery-filter="instagram"].active,
+    .gallery-tabs button[data-gallery-filter="instagram"]:hover{
+      background:linear-gradient(135deg,#6a3df0,#c9388e,#ef7a29);
+    }
+    .gallery-tabs button[data-gallery-filter="facebook"].active,
+    .gallery-tabs button[data-gallery-filter="facebook"]:hover{
+      background:linear-gradient(135deg,#0f5fc7,#1877f2);
+    }
+
     .gallery-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -2733,6 +2742,61 @@
   background:linear-gradient(145deg,#f1edff,#dcd2fb);
 }
 
+.gallery-section-empty-card[data-open-category="instagram"]{
+  background:linear-gradient(145deg,#fff0f8,#efd9ff);
+}
+.gallery-section-empty-card[data-open-category="facebook"]{
+  background:linear-gradient(145deg,#edf5ff,#d7e9ff);
+}
+
+.gallery-source-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:8px 11px;
+  border-radius:10px;
+  background:#eef3ff;
+  color:#243b83;
+  font-size:.76rem;
+  font-weight:900;
+  text-decoration:none;
+}
+.gallery-source-link:hover{
+  background:#e0e9ff;
+}
+
+.gallery-auto-note{
+  margin:14px 0 18px;
+  padding:13px 15px;
+  border:1px solid #dbe4f3;
+  border-radius:14px;
+  background:linear-gradient(135deg,#f8fbff,#eef4ff);
+  color:#43506a;
+  font-size:.82rem;
+  line-height:1.55;
+}
+.gallery-auto-note strong{color:#1f3477}
+.gallery-auto-note code{
+  padding:2px 6px;
+  border-radius:7px;
+  background:#fff;
+  color:#1d3b89;
+  font-weight:900;
+}
+.gallery-social-origin{
+  display:inline-flex;
+  align-items:center;
+  margin-left:6px;
+  padding:2px 7px;
+  border-radius:999px;
+  background:#edf3ff;
+  color:#35509a;
+  font-size:.68rem;
+  font-weight:900;
+  vertical-align:middle;
+}
+
 .gallery-section-placeholder{
   position:relative;
   z-index:2;
@@ -3710,8 +3774,16 @@ body.page-historia .menu a[href="historia.html"]{
         <div class="section-label">Galería</div>
         <h2 class="section-title">La vida del colegio, en imágenes</h2>
         <p class="lead">
-          La galería está separada por categorías y niveles. Elegí una pestaña para ver solamente las imágenes de ese sector.
+          La galería reúne las imágenes institucionales y también las fotos publicadas en Instagram y Facebook. Las publicaciones de redes se clasifican automáticamente por nivel, actos y proyectos según su texto y hashtags.
         </p>
+
+        <div class="gallery-auto-note">
+          <strong>Clasificación automática:</strong>
+          para máxima precisión podés usar
+          <code>#Inicial</code>, <code>#Primario</code>, <code>#Secundario</code>,
+          <code>#Superior</code>, <code>#Actos</code> o <code>#Proyectos</code>.
+          También se reconocen expresiones habituales como “jardín”, “profesorado”, “feria de ciencias” y “acto escolar”.
+        </div>
 
         <div class="gallery-tabs" aria-label="Filtros de galería">
           <button class="active" data-gallery-filter="all">Todas</button>
@@ -3721,6 +3793,8 @@ body.page-historia .menu a[href="historia.html"]{
           <button data-gallery-filter="primario">Nivel Primario</button>
           <button data-gallery-filter="secundario">Nivel Secundario</button>
           <button data-gallery-filter="superior">Nivel Superior</button>
+          <button data-gallery-filter="instagram">Instagram</button>
+          <button data-gallery-filter="facebook">Facebook</button>
         </div>
 
         
@@ -3892,7 +3966,7 @@ body.page-historia .menu a[href="historia.html"]{
        Cuando tengamos publicada la URL del Apps Script, la pegamos aquí.
        El token de Meta NO se coloca en este HTML.
     */
-    const API_URL = "PEGAR_AQUI_URL_APPS_SCRIPT";
+    const API_URL = "https://script.google.com/macros/s/AKfycbwlh1kMeJjrKdIR6wkZrOS5kCFzg4ASalbs3llnNRI5V95EuHmXuqOUvOSCwRlaouwC3w/exec";
 
     // Menú móvil
     const menuToggle = document.getElementById("menuToggle");
@@ -3987,14 +4061,19 @@ body.page-historia .menu a[href="historia.html"]{
 
     // ===== V18 · GALERÍA PRINCIPAL DESDE GOOGLE DRIVE =====
     const MAIN_GALLERY_API_URL = "https://script.google.com/macros/s/AKfycbwFNIseJFB1LNcYojwmuQQYjOdZMjxypDgrr-VtLsshf_n1f_Urv34diE7uV-egMCh8/exec";
-    const MAIN_GALLERY_CATEGORIES = ["actos","proyectos","inicial","primario","secundario","superior"];
+    const MAIN_GALLERY_DRIVE_CATEGORIES = ["actos","proyectos","inicial","primario","secundario","superior"];
+    const MAIN_GALLERY_SOCIAL_CATEGORIES = ["instagram","facebook"];
+    const MAIN_GALLERY_CATEGORIES = [...MAIN_GALLERY_DRIVE_CATEGORIES, ...MAIN_GALLERY_SOCIAL_CATEGORIES];
+
     const MAIN_GALLERY_LABELS = {
       actos: "Actos y celebraciones",
       proyectos: "Proyectos educativos",
       inicial: "Nivel Inicial",
       primario: "Nivel Primario",
       secundario: "Nivel Secundario",
-      superior: "Nivel Superior"
+      superior: "Nivel Superior",
+      instagram: "Instagram",
+      facebook: "Facebook"
     };
     const MAIN_GALLERY_ICONS = {
       actos: "🎉",
@@ -4002,11 +4081,24 @@ body.page-historia .menu a[href="historia.html"]{
       inicial: "🧸",
       primario: "📚",
       secundario: "🎓",
-      superior: "👩‍🏫"
+      superior: "👩‍🏫",
+      instagram: "📸",
+      facebook: "f"
     };
 
-    const mainGalleryData = {};
-    let mainGalleryPending = MAIN_GALLERY_CATEGORIES.length;
+    const mainGalleryData = {
+      instagram: [],
+      facebook: []
+    };
+    const mainGalleryAutoSocialData = {
+      actos: [],
+      proyectos: [],
+      inicial: [],
+      primario: [],
+      secundario: [],
+      superior: []
+    };
+    let mainGalleryPending = MAIN_GALLERY_DRIVE_CATEGORIES.length + MAIN_GALLERY_SOCIAL_CATEGORIES.length;
     let mainGalleryCurrentFilter = "all";
 
     
@@ -4056,12 +4148,247 @@ body.page-historia .menu a[href="historia.html"]{
     }
 
 
+    function socialGalleryShortTitle(text, fallback){
+      const clean = String(text || "")
+        .replace(/\s+/g," ")
+        .trim();
+      if(!clean) return fallback;
+      return clean.length > 92 ? clean.slice(0,89) + "…" : clean;
+    }
+
+
+    function normalizeSocialGalleryText(value){
+      return String(value || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g,"")
+        .toLowerCase()
+        .replace(/[’´`]/g,"'")
+        .replace(/\s+/g," ")
+        .trim();
+    }
+
+    const SOCIAL_GALLERY_RULES = {
+      inicial: [
+        "#inicial", "#nivelinicial", "#jardin", "#jardin4", "#jardin5",
+        "nivel inicial", "jardin de infantes", "jardin 4", "jardin 5",
+        "sala de 4", "sala de 5", "salita de 4", "salita de 5"
+      ],
+      primario: [
+        "#primario", "#primaria", "#nivelprimario",
+        "nivel primario", "nivel primaria", "escuela primaria",
+        "primer grado", "1er grado", "1° grado",
+        "segundo grado", "2do grado", "2° grado",
+        "tercer grado", "3er grado", "3° grado",
+        "cuarto grado", "4to grado", "4° grado",
+        "quinto grado", "5to grado", "5° grado",
+        "sexto grado", "6to grado", "6° grado"
+      ],
+      secundario: [
+        "#secundario", "#secundaria", "#nivelsecundario",
+        "nivel secundario", "nivel secundaria", "escuela secundaria"
+      ],
+      superior: [
+        "#superior", "#nivelsuperior", "#terciario", "#profesorado",
+        "nivel superior", "nivel terciario", "profesorado",
+        "formacion docente", "formación docente"
+      ],
+      actos: [
+        "#actos", "#acto", "#celebracion", "#celebraciones", "#efemerides",
+        "acto escolar", "acto academico", "acto patrio", "acto conmemorativo",
+        "celebracion escolar", "celebración escolar", "efemeride", "efeméride",
+        "aniversario del colegio", "promesa a la bandera", "jura",
+        "dia de la bandera", "día de la bandera", "9 de julio", "25 de mayo",
+        "20 de junio", "17 de agosto", "dia del maestro", "día del maestro",
+        "dia del profesor", "día del profesor", "colacion", "colación",
+        "egresados", "misa", "via crucis", "vía crucis"
+      ],
+      proyectos: [
+        "#proyectos", "#proyecto", "#feria", "#muestra", "#taller",
+        "#ciencia", "#robotica", "#tecnologia",
+        "proyecto educativo", "proyecto escolar", "feria de ciencias",
+        "feria cientifica", "feria científica", "muestra educativa",
+        "muestra escolar", "muestra de ciencias", "taller educativo",
+        "laboratorio", "robotica", "robótica", "impresion 3d", "impresión 3d",
+        "programacion", "programación", "tecnologia", "tecnología",
+        "experimento", "experimentos", "investigacion", "investigación"
+      ]
+    };
+
+    function classifySocialGalleryPost(text){
+      const normalized = normalizeSocialGalleryText(text);
+      if(!normalized) return [];
+
+      return Object.entries(SOCIAL_GALLERY_RULES)
+        .filter(([category, terms]) =>
+          terms.some(term => normalized.includes(normalizeSocialGalleryText(term)))
+        )
+        .map(([category]) => category);
+    }
+
+    function resetAutoSocialGallerySource(source){
+      Object.keys(mainGalleryAutoSocialData).forEach(category => {
+        mainGalleryAutoSocialData[category] =
+          (mainGalleryAutoSocialData[category] || [])
+            .filter(item => item.socialSource !== source);
+      });
+    }
+
+    function addSocialItemToAutomaticGalleries(item, originalText){
+      const categories = classifySocialGalleryPost(originalText);
+
+      categories.forEach(category => {
+        if(!mainGalleryAutoSocialData[category]){
+          mainGalleryAutoSocialData[category] = [];
+        }
+
+        const key = String(item.permalink || item.full || item.thumbnail || item.title || "");
+        const exists = mainGalleryAutoSocialData[category].some(existing => {
+          const existingKey = String(
+            existing.permalink || existing.full || existing.thumbnail || existing.title || ""
+          );
+          return existingKey && existingKey === key;
+        });
+
+        if(!exists){
+          mainGalleryAutoSocialData[category].push({
+            ...item,
+            autoClassified: true
+          });
+        }
+      });
+
+      return categories;
+    }
+
+    window.renderGalleryInstagram = function(payload){
+      const posts = payload && payload.ok === true && Array.isArray(payload.instagram)
+        ? payload.instagram
+        : [];
+
+      resetAutoSocialGallerySource("Instagram");
+
+      mainGalleryData.instagram = posts
+        .map(post => {
+          const image = String(post.thumbnail_url || post.media_url || "");
+          if(!image) return null;
+
+          const caption = String(post.caption || "");
+          const item = {
+            title: socialGalleryShortTitle(caption, "Publicación de Instagram"),
+            thumbnail: image,
+            full: image,
+            updated: String(post.timestamp || ""),
+            permalink: String(post.permalink || ""),
+            source: "Instagram",
+            socialSource: "Instagram"
+          };
+
+          addSocialItemToAutomaticGalleries(item, caption);
+          return item;
+        })
+        .filter(Boolean);
+
+      mainGalleryPending = Math.max(0, mainGalleryPending - 1);
+      mainGalleryCurrentFilter === "all"
+        ? renderGallerySectionsHome()
+        : renderMainGallery(mainGalleryCurrentFilter);
+    };
+
+    window.renderGalleryFacebook = function(payload){
+      const posts = payload && payload.ok === true && Array.isArray(payload.facebook)
+        ? payload.facebook
+        : [];
+
+      const automaticPostPatterns = [
+        "ha actualizado su foto del perfil",
+        "ha actualizado la foto del perfil",
+        "ha actualizado su foto de portada",
+        "ha actualizado la foto de portada",
+        "updated their profile picture",
+        "updated its profile picture",
+        "updated their cover photo",
+        "updated its cover photo"
+      ];
+
+      resetAutoSocialGallerySource("Facebook");
+
+      mainGalleryData.facebook = posts
+        .filter(post => {
+          const text = normalizeSocialGalleryText(post.message || "");
+          return !automaticPostPatterns.some(pattern =>
+            text.includes(normalizeSocialGalleryText(pattern))
+          );
+        })
+        .map(post => {
+          const image = String(post.full_picture || "");
+          if(!image) return null;
+
+          const message = String(post.message || "");
+          const item = {
+            title: socialGalleryShortTitle(message, "Publicación de Facebook"),
+            thumbnail: image,
+            full: image,
+            updated: String(post.created_time || ""),
+            permalink: String(post.permalink_url || ""),
+            source: "Facebook",
+            socialSource: "Facebook"
+          };
+
+          addSocialItemToAutomaticGalleries(item, message);
+          return item;
+        })
+        .filter(Boolean);
+
+      mainGalleryPending = Math.max(0, mainGalleryPending - 1);
+      mainGalleryCurrentFilter === "all"
+        ? renderGallerySectionsHome()
+        : renderMainGallery(mainGalleryCurrentFilter);
+    };
+
+    function loadSocialGalleryFeed(feed, callbackName){
+      const s = document.createElement("script");
+      s.src = API_URL
+        + "?feed=" + encodeURIComponent(feed)
+        + "&callback=" + encodeURIComponent(callbackName)
+        + "&t=" + Date.now();
+
+      s.onerror = function(){
+        mainGalleryData[feed] = [];
+        mainGalleryPending = Math.max(0, mainGalleryPending - 1);
+        mainGalleryCurrentFilter === "all"
+          ? renderGallerySectionsHome()
+          : renderMainGallery(mainGalleryCurrentFilter);
+      };
+
+      document.head.appendChild(s);
+    }
+
+
 
 
     let mainGalleryCurrentIndex = 0;
 
     function getMainGalleryItems(filter){
-      let items = (mainGalleryData[filter] || []).map(img => ({...img, category:filter}));
+      const baseItems = (mainGalleryData[filter] || [])
+        .map(img => ({...img, category:filter}));
+
+      const autoSocialItems = MAIN_GALLERY_DRIVE_CATEGORIES.includes(filter)
+        ? (mainGalleryAutoSocialData[filter] || [])
+            .map(img => ({...img, category:filter}))
+        : [];
+
+      const combined = [...baseItems, ...autoSocialItems];
+
+      // Evita duplicados dentro de la misma galería.
+      const seen = new Set();
+      let items = combined.filter(item => {
+        const key = String(
+          item.permalink || item.full || item.thumbnail || (item.title + "|" + item.updated)
+        );
+        if(seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
 
       items.sort((a,b) => {
         const da = new Date(a.updated || 0).getTime();
@@ -4204,7 +4531,10 @@ body.page-historia .menu a[href="historia.html"]{
               <div class="gallery-counter">${mainGalleryCurrentIndex + 1} / ${items.length}</div>
 
               <div class="gallery-viewer-overlay">
-                <b>${mainGalleryEscape(cleanGalleryDisplayTitle(current.title) || currentLabel)}</b>
+                <b>
+                  ${mainGalleryEscape(cleanGalleryDisplayTitle(current.title) || currentLabel)}
+                  ${current.socialSource ? `<span class="gallery-social-origin">${mainGalleryEscape(current.socialSource)}</span>` : ""}
+                </b>
                 <span>${mainGalleryEscape(currentLabel)}${updated ? " · " + mainGalleryEscape(updated) : ""}</span>
               </div>
             </div>
@@ -4223,7 +4553,18 @@ body.page-historia .menu a[href="historia.html"]{
 
             <div class="gallery-viewer-meta">
               <span><strong>${mainGalleryEscape(currentLabel)}</strong></span>
-              <span>La imagen más reciente aparece primero</span>
+              <span>
+                La imagen más reciente aparece primero
+                ${current.autoClassified ? " · Clasificada automáticamente desde " + mainGalleryEscape(current.socialSource || "redes") : ""}
+              </span>
+              ${current.permalink ? `
+                <a class="gallery-source-link"
+                   href="${mainGalleryEscape(current.permalink)}"
+                   target="_blank"
+                   rel="noopener">
+                  Ver publicación original ↗
+                </a>
+              ` : ""}
             </div>
           </div>
         </div>
@@ -4321,8 +4662,13 @@ body.page-historia .menu a[href="historia.html"]{
       }
     });
 
-    // Cargar las 6 carpetas de Drive
-    MAIN_GALLERY_CATEGORIES.forEach(registerMainGalleryCallback);
+    // Cargar las 6 carpetas de Drive.
+    MAIN_GALLERY_DRIVE_CATEGORIES.forEach(registerMainGalleryCallback);
+
+    // Cargar fotos reales de las redes sociales mediante el backend seguro.
+    loadSocialGalleryFeed("instagram", "renderGalleryInstagram");
+    loadSocialGalleryFeed("facebook", "renderGalleryFacebook");
+
     renderGallerySectionsHome();
 
     // Si alguna respuesta tarda, mostrar igualmente lo que ya haya llegado.
@@ -4330,7 +4676,7 @@ body.page-historia .menu a[href="historia.html"]{
       mainGalleryCurrentFilter === "all" ? renderGallerySectionsHome() : renderMainGallery(mainGalleryCurrentFilter);
       const status = document.getElementById("galleryDriveStatus");
       if(status && mainGalleryPending > 0){
-        status.textContent += " · Algunas carpetas todavía están respondiendo.";
+        status.textContent += " · Algunas fuentes todavía están respondiendo.";
       }
     }, 6000);
 
