@@ -3774,7 +3774,7 @@ body.page-historia .menu a[href="historia.html"]{
         <div class="section-label">Galería</div>
         <h2 class="section-title">La vida del colegio, en imágenes</h2>
         <p class="lead">
-          La galería reúne las imágenes institucionales y también las fotos publicadas en Instagram y Facebook. Las publicaciones de redes se clasifican automáticamente por nivel, actos y proyectos según su texto y hashtags.
+          La galería reúne las imágenes institucionales y también las fotos publicadas en Instagram y Facebook. La galería recupera un historial ampliado de publicaciones de Instagram y Facebook, incluyendo carruseles con varias fotos, y las clasifica automáticamente por nivel, actos y proyectos según su texto y hashtags.
         </p>
 
         <div class="gallery-auto-note">
@@ -4157,6 +4157,38 @@ body.page-historia .menu a[href="historia.html"]{
     }
 
 
+    function expandSocialPostImages(post, source, text, timestamp, permalink, fallbackImage){
+      const rawImages = Array.isArray(post && post.images)
+        ? post.images
+        : [];
+
+      const images = rawImages.length
+        ? rawImages
+        : [fallbackImage].filter(Boolean);
+
+      const unique = [];
+      images.forEach(url => {
+        const value = String(url || "").trim();
+        if(value && !unique.includes(value)) unique.push(value);
+      });
+
+      return unique.map((image, index) => ({
+        title: socialGalleryShortTitle(
+          text,
+          source === "Instagram"
+            ? "Publicación de Instagram"
+            : "Publicación de Facebook"
+        ) + (unique.length > 1 ? ` · Foto ${index + 1}` : ""),
+        thumbnail: image,
+        full: image,
+        updated: String(timestamp || ""),
+        permalink: String(permalink || ""),
+        source: source,
+        socialSource: source
+      }));
+    }
+
+
     function normalizeSocialGalleryText(value){
       return String(value || "")
         .normalize("NFD")
@@ -4268,23 +4300,24 @@ body.page-historia .menu a[href="historia.html"]{
       resetAutoSocialGallerySource("Instagram");
 
       mainGalleryData.instagram = posts
-        .map(post => {
-          const image = String(post.thumbnail_url || post.media_url || "");
-          if(!image) return null;
-
+        .flatMap(post => {
           const caption = String(post.caption || "");
-          const item = {
-            title: socialGalleryShortTitle(caption, "Publicación de Instagram"),
-            thumbnail: image,
-            full: image,
-            updated: String(post.timestamp || ""),
-            permalink: String(post.permalink || ""),
-            source: "Instagram",
-            socialSource: "Instagram"
-          };
+          const fallbackImage = String(post.thumbnail_url || post.media_url || "");
 
-          addSocialItemToAutomaticGalleries(item, caption);
-          return item;
+          const items = expandSocialPostImages(
+            post,
+            "Instagram",
+            caption,
+            post.timestamp,
+            post.permalink,
+            fallbackImage
+          );
+
+          items.forEach(item => {
+            addSocialItemToAutomaticGalleries(item, caption);
+          });
+
+          return items;
         })
         .filter(Boolean);
 
@@ -4319,23 +4352,24 @@ body.page-historia .menu a[href="historia.html"]{
             text.includes(normalizeSocialGalleryText(pattern))
           );
         })
-        .map(post => {
-          const image = String(post.full_picture || "");
-          if(!image) return null;
-
+        .flatMap(post => {
           const message = String(post.message || "");
-          const item = {
-            title: socialGalleryShortTitle(message, "Publicación de Facebook"),
-            thumbnail: image,
-            full: image,
-            updated: String(post.created_time || ""),
-            permalink: String(post.permalink_url || ""),
-            source: "Facebook",
-            socialSource: "Facebook"
-          };
+          const fallbackImage = String(post.full_picture || "");
 
-          addSocialItemToAutomaticGalleries(item, message);
-          return item;
+          const items = expandSocialPostImages(
+            post,
+            "Facebook",
+            message,
+            post.created_time,
+            post.permalink_url,
+            fallbackImage
+          );
+
+          items.forEach(item => {
+            addSocialItemToAutomaticGalleries(item, message);
+          });
+
+          return items;
         })
         .filter(Boolean);
 
