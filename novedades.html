@@ -378,6 +378,62 @@
 .quick-nav a:nth-child(4){background:#f0edff !important;border-color:#d5cdf4 !important}
 .quick-nav a:nth-child(5){background:#eaf7f4 !important;border-color:#c4e3dc !important}
 
+
+/* ===== V47 · INSTAGRAM REAL DESDE META API ===== */
+.social-feed-title{
+  margin:22px 0 12px;
+  color:#18245c;
+  font-size:1.15rem;
+  font-weight:900;
+}
+.instagram-live-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+  margin-top:14px;
+}
+.instagram-live-post{
+  display:block;
+  overflow:hidden;
+  border-radius:17px;
+  background:#fff;
+  border:1px solid #dde3ec;
+  box-shadow:0 9px 24px rgba(31,40,91,.07);
+  color:#20283c;
+  transition:.2s ease;
+}
+.instagram-live-post:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 30px rgba(31,40,91,.12);
+}
+.instagram-live-post img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  background:#edf1f5;
+}
+.instagram-live-caption{
+  padding:12px 13px 14px;
+  font-size:.86rem;
+  line-height:1.45;
+  color:#3d4658;
+}
+.instagram-live-empty{
+  grid-column:1/-1;
+  padding:22px;
+  border:1px dashed #cbd5e3;
+  border-radius:15px;
+  text-align:center;
+  color:#657084;
+  background:#fff;
+}
+@media(max-width:820px){
+  .instagram-live-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+  .instagram-live-grid{grid-template-columns:1fr}
+}
+
 </style>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#202a73">
@@ -480,6 +536,10 @@
           <a class="more" href="https://www.facebook.com/col.santarita.brs" >Abrir Facebook ↗</a>
         </article>
       </div>
+      <div class="social-feed-title">Últimas publicaciones de Instagram</div>
+      <div class="instagram-live-grid" id="instagramLiveGrid">
+        <div class="instagram-live-empty">Cargando publicaciones de Instagram…</div>
+      </div>
     </section>
   </main>
 
@@ -568,6 +628,50 @@
       const s = document.createElement("script");
       s.src = DOCENTES_PUBLIC_API
         + "?api=publicaciones&callback=renderSantaRitaPublicaciones&t=" + Date.now();
+      document.head.appendChild(s);
+    })();
+
+
+    // ===== V47 · INSTAGRAM OFICIAL DESDE APP DOCENTES =====
+    function escIg(value){
+      return String(value ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    window.renderSantaRitaInstagramNovedades = function(payload){
+      const grid = document.getElementById("instagramLiveGrid");
+      if(!grid) return;
+
+      if(!payload || payload.ok !== true || !Array.isArray(payload.instagram) || !payload.instagram.length){
+        grid.innerHTML = '<div class="instagram-live-empty">Todavía no se pudieron cargar las publicaciones de Instagram.</div>';
+        return;
+      }
+
+      grid.innerHTML = payload.instagram.slice(0,9).map(post => {
+        const media = post.thumbnail_url || post.media_url || "";
+        const caption = String(post.caption || "").trim().slice(0,160);
+
+        return `
+          <a class="instagram-live-post"
+             href="${escIg(post.permalink || "https://www.instagram.com/colegiosantarita.brs/")}"
+             target="_blank"
+             rel="noopener">
+            ${media ? `<img src="${escIg(media)}" alt="Publicación de Instagram" loading="lazy">` : ""}
+            <div class="instagram-live-caption">
+              ${caption ? escIg(caption) : "Ver publicación en Instagram"}
+            </div>
+          </a>
+        `;
+      }).join("");
+    };
+
+    (function loadInstagramFeed(){
+      const s = document.createElement("script");
+      s.src = "https://script.google.com/macros/s/AKfycbwlh1kMeJjrKdIR6wkZrOS5kCFzg4ASalbs3llnNRI5V95EuHmXuqOUvOSCwRlaouwC3w/exec?feed=instagram&callback=renderSantaRitaInstagramNovedades&t=" + Date.now();
       document.head.appendChild(s);
     })();
 

@@ -10,7 +10,7 @@
     const parts = location.pathname.split("/").filter(Boolean);
     const repo = isGithubProject && parts.length ? parts[0] : "";
     return {
-      workerPath: repo ? `/${repo}/OneSignalSDKWorker.js` : "/OneSignalSDKWorker.js",
+      workerPath: repo ? `${repo}/OneSignalSDKWorker.js` : "OneSignalSDKWorker.js",
       scope: repo ? `/${repo}/` : "/"
     };
   }

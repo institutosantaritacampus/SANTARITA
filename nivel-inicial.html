@@ -678,14 +678,165 @@ body.page-historia .menu a[href="historia.html"]{
   }
 }
 
+
+/* =========================================================
+   V41 · FONDOS FOTOGRÁFICOS ALEATORIOS POR NIVEL
+   ========================================================= */
+body{
+  position:relative !important;
+  background:#edf2f7 !important;
+  min-height:100vh;
+}
+
+.level-bg-stage{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.level-bg-photo{
+  position:absolute;
+  inset:-2%;
+  background-position:center center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  opacity:0;
+  transform:scale(1.045);
+  transition:opacity 1.35s ease, transform 9s ease;
+  filter:saturate(1.10) contrast(1.04);
+}
+
+.level-bg-photo.active{
+  opacity:1;
+  transform:scale(1);
+}
+
+.level-bg-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg,
+      rgba(241,246,252,.72) 0%,
+      rgba(245,247,250,.78) 34%,
+      rgba(244,239,240,.76) 68%,
+      rgba(237,242,248,.79) 100%);
+}
+
+body > *:not(.level-bg-stage){
+  position:relative;
+  z-index:1;
+}
+
+/* Hero más visual y sin fondo plano */
+.hero{
+  min-height:430px !important;
+  display:flex !important;
+  align-items:center !important;
+  padding:76px 0 62px !important;
+  background:linear-gradient(
+    90deg,
+    rgba(255,255,255,.80) 0%,
+    rgba(255,255,255,.62) 52%,
+    rgba(255,255,255,.28) 100%
+  ) !important;
+  border-bottom:1px solid rgba(255,255,255,.58) !important;
+  backdrop-filter:blur(1.5px);
+}
+
+.hero:before,
+.hero:after{
+  display:none !important;
+}
+
+.hero .container{
+  padding:28px 30px !important;
+  border-radius:24px !important;
+  background:rgba(255,255,255,.40) !important;
+  border:1px solid rgba(255,255,255,.60) !important;
+  box-shadow:0 18px 48px rgba(27,39,86,.08) !important;
+  backdrop-filter:blur(5px);
+}
+
+.hero h1{
+  text-shadow:0 2px 18px rgba(255,255,255,.82);
+}
+
+.hero p{
+  color:#25304c !important;
+  font-weight:650 !important;
+  text-shadow:0 1px 8px rgba(255,255,255,.78);
+}
+
+.eyebrow{
+  display:inline-flex !important;
+  padding:7px 11px !important;
+  border-radius:999px !important;
+  background:rgba(255,255,255,.82) !important;
+  box-shadow:0 7px 18px rgba(31,40,91,.06);
+}
+
+/* Secciones flotantes sobre el fondo */
+.section{
+  background:transparent !important;
+  padding:34px 0 !important;
+}
+
+.section > .container{
+  padding:30px !important;
+  border-radius:24px !important;
+  background:rgba(255,255,255,.84) !important;
+  border:1px solid rgba(211,220,231,.88) !important;
+  box-shadow:0 14px 38px rgba(31,40,91,.08) !important;
+  backdrop-filter:blur(8px);
+}
+
+/* Las tarjetas conservan sus colores pero ganan profundidad */
+.info-card,
+.news-card,
+.notice-box,
+.req,
+.drive-gallery-card,
+.gallery-item{
+  box-shadow:0 10px 28px rgba(31,40,91,.08) !important;
+}
+
+footer{
+  position:relative;
+  z-index:2;
+}
+
+@media(max-width:700px){
+  .hero{
+    min-height:390px !important;
+    padding:48px 0 38px !important;
+    background:rgba(255,255,255,.58) !important;
+  }
+
+  .hero .container,
+  .section > .container{
+    padding:22px !important;
+    border-radius:20px !important;
+  }
+
+  .level-bg-photo{
+    background-position:center center;
+  }
+
+  .level-bg-overlay{
+    background:rgba(242,246,250,.74);
+  }
+}
+
 </style>
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#202a73">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script src="push-notifications.js" defer></script>
 </head>
-<body>
+<body data-level="inicial">
+<div class="level-bg-stage" id="levelBgStage" aria-hidden="true">
+  <div class="level-bg-photo" id="levelBgA"></div>
+  <div class="level-bg-photo" id="levelBgB"></div>
+  <div class="level-bg-overlay"></div>
+</div>
 <div class="topbar">Colegio Santa Rita · Nivel Inicial</div>
 <header>
   <nav class="nav container">
@@ -936,6 +1087,84 @@ window.renderLevelNews = function(payload){
     + "?api=publicaciones&destino=" + encodeURIComponent(LEVEL_NEWS_DESTINATION)
     + "&callback=renderLevelNews&t=" + Date.now();
   document.head.appendChild(s);
+})();
+</script>
+
+
+<script>
+(function(){
+  const LEVEL = "inicial";
+  const MAX_PHOTOS = 8;
+  const CHANGE_EVERY = 8000;
+
+  const stage = document.getElementById("levelBgStage");
+  const slideA = document.getElementById("levelBgA");
+  const slideB = document.getElementById("levelBgB");
+
+  if(!stage || !slideA || !slideB) return;
+
+  const candidates = Array.from({length:MAX_PHOTOS}, (_,i) => {
+    const n = String(i + 1).padStart(2,"0");
+    return `fondo-${LEVEL}-${n}.jpg`;
+  });
+
+  function testImage(src){
+    return new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => resolve(src);
+      img.onerror = () => resolve(null);
+      img.src = src + "?v=1";
+    });
+  }
+
+  function shuffle(list){
+    const copy = [...list];
+    for(let i = copy.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i],copy[j]] = [copy[j],copy[i]];
+    }
+    return copy;
+  }
+
+  Promise.all(candidates.map(testImage)).then(results => {
+    let photos = shuffle(results.filter(Boolean));
+
+    /* Si todavía no cargaste fotos, la página conserva su diseño actual. */
+    if(!photos.length){
+      stage.style.display = "none";
+      return;
+    }
+
+    let active = slideA;
+    let hidden = slideB;
+    let index = 0;
+
+    function setSlide(target, src){
+      target.style.backgroundImage = `url("${src}")`;
+    }
+
+    setSlide(active, photos[0]);
+    active.classList.add("active");
+
+    if(photos.length === 1) return;
+
+    setInterval(() => {
+      index++;
+
+      if(index >= photos.length){
+        photos = shuffle(photos);
+        index = 0;
+      }
+
+      setSlide(hidden, photos[index]);
+      hidden.classList.add("active");
+      active.classList.remove("active");
+
+      const temp = active;
+      active = hidden;
+      hidden = temp;
+    }, CHANGE_EVERY);
+  });
 })();
 </script>
 

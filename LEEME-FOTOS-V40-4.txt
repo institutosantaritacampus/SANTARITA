@@ -1,0 +1,16 @@
+COLEGIO SANTA RITA — V40.4
+
+CORRECCIÓN DEFINITIVA DE LAS FOTOS DE INICIO
+
+Las 5 fotografías están incrustadas dentro de index.html.
+Esto significa que:
+- no dependen de rutas de GitHub;
+- no dependen de la carpeta fotos-inicio;
+- no importa si GitHub no copia una subcarpeta;
+- el slideshow funciona desde un script independiente.
+
+PARA ACTUALIZAR:
+Reemplazar como mínimo index.html por el de esta versión.
+
+Los JPG se mantienen también en el paquete por comodidad,
+pero la portada ya no depende de ellos para mostrarse.
